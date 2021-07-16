@@ -1,0 +1,31 @@
+@import "../../theme/colors.scss";
+@import "../../theme/flex.scss";
+@import "../../theme/fonts.scss";
+.burger-nav__main{
+    position: absolute;
+    left: 0%;
+    top:0;
+    width: calc(50vw + 64px);
+    height: 100vh;
+    opacity: 0.7;
+    min-width: calc(560px + 64px);
+    background-color:$color-dark-light;
+    z-index: 1;
+    transition: 0.3s ease-in-out;
+}
+
+.burger-nav__second{
+    position: absolute;
+    left: calc(50vw + 64px);
+    top:0;
+    width: calc(50vw - 64px);
+    height: 100vh;
+    background-color:black;
+    opacity: 0.5;
+    z-index: 1;
+    transition: 0.3s ease-in-out;
+}
+.hide{
+    left: -100%;
+        transition: 0.3 ease-in-out;
+}

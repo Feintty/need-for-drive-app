@@ -1,0 +1,46 @@
+
+@import "./colors.scss";
+
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+	font-weight: normal;
+  src: local('Roboto'),
+       url('../fonts/Roboto-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+	font-weight: 300;
+  src: local('Roboto'),
+       url('../fonts/Roboto-Light.ttf') format('truetype');
+}
+
+
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+	font-weight: bold;
+  src: local('Roboto'),
+       url('../fonts/Roboto-Bold.ttf') format('truetype');
+}
+
+@mixin font-normal {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+
+}
+
+@mixin font-light{
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 300;
+}
+
+@mixin font-bold {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+}

@@ -1,0 +1,57 @@
+/*Links*/
+
+@import "./colors.scss";
+
+@mixin link-props($color) {
+  text-decoration: none;
+  color: $color;
+  user-select: none;
+  transition: 0.3s ease-in-out;
+  li:visited {
+    color: $color;
+  }
+}
+
+.link-light {
+  @include link-props($color-main);
+}
+
+.link-light:hover {
+  color: $color-accent;
+}
+
+.link-light:active {
+  color: $color-accent;
+}
+
+.link-dark {
+  @include link-props($color-main-light);
+}
+
+.link-dark:hover {
+  color: $color-accent;
+}
+
+.link-dark:active {
+  color: $color-accent;
+}
+
+.link-darkinverted {
+  @include link-props($color-accent);
+}
+
+.link-darkinverted:hover {
+  color: $color-main-light;
+}
+
+.link-darkinverted:hover {
+  color: $color-main-light;
+}
+
+.link-disabled {
+  cursor: default;
+  user-select: none;
+  pointer-events: none;
+  text-decoration: none;
+  color: $color-disabled;
+}

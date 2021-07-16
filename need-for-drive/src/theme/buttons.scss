@@ -1,0 +1,65 @@
+@import "./colors.scss";
+@import "./fonts.scss";
+
+/*Buttons*/
+
+$button-brightness: 100%;
+$button-gradient: 90deg, #0ec261 2.61%, #039f67 112.6%;
+
+button:hover{
+  cursor: pointer;
+}
+
+@mixin button-props {
+  @include font-normal;
+  user-select: none;
+  height: 48px;
+  border: 0px;
+  transition: 0.3s ease-in-out;
+}
+
+.button-default {
+  @include button-props;
+  color: $color-main-light;
+  background: linear-gradient($button-gradient);
+  filter: brightness($button-brightness);
+  border-radius: 8px;
+}
+
+.button-default:focus {
+  filter: brightness($button-brightness - 10%);
+}
+
+.button-default:hover {
+  filter: brightness($button-brightness - 10%);
+}
+
+.button-default:active {
+  filter: brightness($button-brightness - 20%);
+}
+
+.button-disabled {
+  @include button-props;
+  color: $color-main-light;
+  background: $color-disabled;
+  border-radius: 8px;
+}
+
+.button-round {
+  @include button-props;
+  width: 48px;
+  color: $color-accent;
+  border: 0% solid $color-main-light;
+  background: none;
+  border-radius: 100px;
+}
+
+.button-round:hover {
+  border: 1px solid $color-main-light;
+  color: $color-main-light;
+}
+
+.button-round:active {
+  border: 1px solid $color-main-light;
+  color: $color-accent;
+}
