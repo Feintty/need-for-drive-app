@@ -1,13 +1,28 @@
 import React, { useState, useEffect } from "react";
 import "./BurgerNav.scss";
-import Burger from "../../assets/icons/sidebar-burger.svg";
-import Close from "../../assets/icons/close.svg";
+import TelegramIcon from "../../assets/icons/telegram.svg";
+import InstagramIcon from "../../assets/icons/instagram.svg";
+import FacebookIcon from "../../assets/icons/facebook.svg";
 
 const BurgerNav = ({ isHiding }) => {
   return (
     <React.Fragment>
-      <nav className={isHiding ? "burger-nav__main hide" : "burger-nav__main"}></nav>
-      <div className={isHiding ? "burger-nav__second hide" : "burger-nav__second"}></div>
+      <div className={isHiding ? "burger-nav--main hide" : "burger-nav--main"}>
+        <nav className="burger-nav__container">
+          <a href="/" className="burger-nav__link link-dark">ПАРКОВКА</a>
+          <a href="/" className="burger-nav__link link-dark">СТРАХОВКА</a>
+          <a href="/" className="burger-nav__link link-dark">БЕНЗИН</a>
+          <a href="/" className="burger-nav__link link-dark">ОБСЛУЖИВАНИЕ</a>
+        </nav>
+        <div className="burger-nav__socials">
+          <img src={TelegramIcon} className="socials__icon"></img>
+          <img src={FacebookIcon} className="socials__icon"></img>
+          <img src={InstagramIcon} className="socials__icon"></img>
+        </div>
+      </div>
+      <div
+        className={isHiding ? "burger-nav--second hide" : "burger-nav--second"}
+      ></div>
     </React.Fragment>
   );
 };
