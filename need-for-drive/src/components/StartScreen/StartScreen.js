@@ -18,7 +18,9 @@ const StartScreen = () => {
         <h3 className="content__subheading">
           Поминутная аренда авто твоего города
         </h3>
-        <button className="content__button button-default">Забронировать</button>
+        <button className="content__button button-default">
+          Забронировать
+        </button>
       </div>
       <footer className="start-screen__footer">
         <h4 className="footer__info">© 2016-2019 «Need for drive»</h4>

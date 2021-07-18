@@ -4,9 +4,23 @@
 /*Buttons*/
 
 $button-brightness: 100%;
-$button-gradient: 90deg, #0ec261 2.61%, #039f67 112.6%;
+$button-gradient: linear-gradient(
+  90deg,
+  hsl(148, 87%, 41%) 2.61%,
+  hsl(158, 96%, 32%) 112.6%
+);
+$button-gradient-mid-bright: linear-gradient(
+  90deg,
+  hsl(148, 87%, 31%) 2.61%,
+  hsl(158, 96%, 22%) 112.6%
+);
+$button-gradient-low-bright: linear-gradient(
+  90deg,
+  hsl(148, 87%, 21%) 2.61%,
+  hsl(158, 96%, 12%) 112.6%
+);
 
-button:hover{
+button:hover {
   cursor: pointer;
 }
 
@@ -21,21 +35,20 @@ button:hover{
 .button-default {
   @include button-props;
   color: $color-main-light;
-  background: linear-gradient($button-gradient);
-  filter: brightness($button-brightness);
+  background: $button-gradient;
   border-radius: 8px;
 }
 
 .button-default:focus {
-  filter: brightness($button-brightness - 10%);
+  background: $button-gradient-mid-bright;
 }
 
 .button-default:hover {
-  filter: brightness($button-brightness - 10%);
+  background: $button-gradient-mid-bright;
 }
 
 .button-default:active {
-  filter: brightness($button-brightness - 20%);
+  background: $button-gradient-low-bright;
 }
 
 .button-disabled {

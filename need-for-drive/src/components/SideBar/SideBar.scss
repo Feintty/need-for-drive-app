@@ -2,9 +2,11 @@
 @import "../../theme/flex.scss";
 @import "../../theme/fonts.scss";
 
+$sider-bar-width: 64px;
+
 .side-bar {
   @include flex-column-space;
-  width: 64px;
+  width: $sider-bar-width;
   height: 100vh;
   background: $color-dark-light;
   padding: 32px 0 17px 0;
@@ -22,7 +24,7 @@
   height: 32px;
   padding: 0;
   transition: 0.3s ease-in-out;
-  z-index: 2;
+  z-index: 3;
 }
 
 .burger__button:hover {

@@ -2,14 +2,19 @@
 @import "../../theme/colors.scss";
 @import "../../theme/flex.scss";
 
+$start-screen-padding-horizontal: calc(100vw / 30);
+$start-screen-width: 50%;
+
 .start-screen {
   @include flex-column;
-  justify-content: space-between;
-  width: 50%;
-  padding: 32px calc(100vw / 30);
+  position: relative;
+  width: $start-screen-width;
+  min-width: 560px;
+  padding: 32px $start-screen-padding-horizontal;
 
   .start-screen__header {
     @include flex-row-space;
+    padding-bottom: 163px;
     width: 100%;
   }
 
@@ -36,7 +41,7 @@
 .start-screen__content {
   min-width: 549px;
   @include flex-column;
-
+  flex-grow: 1;
   @mixin heading-size {
     @include font-bold;
     font-size: 70px;
