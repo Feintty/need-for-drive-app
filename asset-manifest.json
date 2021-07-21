@@ -1,24 +1,33 @@
 {
   "files": {
-    "main.css": "/need-for-drive-app/static/css/main.4fe192a1.chunk.css",
-    "main.js": "/need-for-drive-app/static/js/main.64e15b57.chunk.js",
-    "main.js.map": "/need-for-drive-app/static/js/main.64e15b57.chunk.js.map",
+    "main.css": "/need-for-drive-app/static/css/main.7beee204.chunk.css",
+    "main.js": "/need-for-drive-app/static/js/main.06495b0e.chunk.js",
+    "main.js.map": "/need-for-drive-app/static/js/main.06495b0e.chunk.js.map",
     "runtime-main.js": "/need-for-drive-app/static/js/runtime-main.ed0bdef9.js",
     "runtime-main.js.map": "/need-for-drive-app/static/js/runtime-main.ed0bdef9.js.map",
     "static/js/2.b3afa098.chunk.js": "/need-for-drive-app/static/js/2.b3afa098.chunk.js",
     "static/js/2.b3afa098.chunk.js.map": "/need-for-drive-app/static/js/2.b3afa098.chunk.js.map",
     "index.html": "/need-for-drive-app/index.html",
-    "static/css/main.4fe192a1.chunk.css.map": "/need-for-drive-app/static/css/main.4fe192a1.chunk.css.map",
+    "static/css/main.7beee204.chunk.css.map": "/need-for-drive-app/static/css/main.7beee204.chunk.css.map",
     "static/js/2.b3afa098.chunk.js.LICENSE.txt": "/need-for-drive-app/static/js/2.b3afa098.chunk.js.LICENSE.txt",
     "static/media/global.scss": "/need-for-drive-app/static/media/Roboto-Regular.a8d6ac03.ttf",
-    "static/media/close.2990540f.svg": "/need-for-drive-app/static/media/close.2990540f.svg",
-    "static/media/destination.dd9d4bed.svg": "/need-for-drive-app/static/media/destination.dd9d4bed.svg",
-    "static/media/sidebar-burger.cec3097c.svg": "/need-for-drive-app/static/media/sidebar-burger.cec3097c.svg"
+    "static/media/arrow-left.1752ae91.svg": "/need-for-drive-app/static/media/arrow-left.1752ae91.svg",
+    "static/media/arrow-right.7591c327.svg": "/need-for-drive-app/static/media/arrow-right.7591c327.svg",
+    "static/media/car-1-min.411cb375.png": "/need-for-drive-app/static/media/car-1-min.411cb375.png",
+    "static/media/car-2-min.7bcfc4ae.png": "/need-for-drive-app/static/media/car-2-min.7bcfc4ae.png",
+    "static/media/car-3-min.c4d0f466.png": "/need-for-drive-app/static/media/car-3-min.c4d0f466.png",
+    "static/media/car-4-min.bb1a5d29.png": "/need-for-drive-app/static/media/car-4-min.bb1a5d29.png",
+    "static/media/close.1d4598cc.svg": "/need-for-drive-app/static/media/close.1d4598cc.svg",
+    "static/media/destination.480be180.svg": "/need-for-drive-app/static/media/destination.480be180.svg",
+    "static/media/facebook.01c0ca6a.svg": "/need-for-drive-app/static/media/facebook.01c0ca6a.svg",
+    "static/media/instagram.5e14e95a.svg": "/need-for-drive-app/static/media/instagram.5e14e95a.svg",
+    "static/media/sidebar-burger.33a03786.svg": "/need-for-drive-app/static/media/sidebar-burger.33a03786.svg",
+    "static/media/telegram.09f73cfe.svg": "/need-for-drive-app/static/media/telegram.09f73cfe.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.ed0bdef9.js",
     "static/js/2.b3afa098.chunk.js",
-    "static/css/main.4fe192a1.chunk.css",
-    "static/js/main.64e15b57.chunk.js"
+    "static/css/main.7beee204.chunk.css",
+    "static/js/main.06495b0e.chunk.js"
   ]
 }
