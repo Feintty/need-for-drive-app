@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/need-for-drive-app/static/css/main.11fe5985.chunk.css",
+    "main.css": "/need-for-drive-app/static/css/main.883ec609.chunk.css",
     "main.js": "/need-for-drive-app/static/js/main.5dbacc0f.chunk.js",
     "main.js.map": "/need-for-drive-app/static/js/main.5dbacc0f.chunk.js.map",
     "runtime-main.js": "/need-for-drive-app/static/js/runtime-main.ed0bdef9.js",
@@ -8,7 +8,7 @@
     "static/js/2.b3afa098.chunk.js": "/need-for-drive-app/static/js/2.b3afa098.chunk.js",
     "static/js/2.b3afa098.chunk.js.map": "/need-for-drive-app/static/js/2.b3afa098.chunk.js.map",
     "index.html": "/need-for-drive-app/index.html",
-    "static/css/main.11fe5985.chunk.css.map": "/need-for-drive-app/static/css/main.11fe5985.chunk.css.map",
+    "static/css/main.883ec609.chunk.css.map": "/need-for-drive-app/static/css/main.883ec609.chunk.css.map",
     "static/js/2.b3afa098.chunk.js.LICENSE.txt": "/need-for-drive-app/static/js/2.b3afa098.chunk.js.LICENSE.txt",
     "static/media/global.scss": "/need-for-drive-app/static/media/Roboto-Regular.a8d6ac03.ttf",
     "static/media/arrow-left.1752ae91.svg": "/need-for-drive-app/static/media/arrow-left.1752ae91.svg",
@@ -27,7 +27,7 @@
   "entrypoints": [
     "static/js/runtime-main.ed0bdef9.js",
     "static/js/2.b3afa098.chunk.js",
-    "static/css/main.11fe5985.chunk.css",
+    "static/css/main.883ec609.chunk.css",
     "static/js/main.5dbacc0f.chunk.js"
   ]
 }
