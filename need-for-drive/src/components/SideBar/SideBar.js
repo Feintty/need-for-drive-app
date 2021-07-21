@@ -11,7 +11,7 @@ const SideBar = ({isBurgerHiding,setIsBurgerHiding}) => {
     <div className="side-bar">
       <aside className="side-bar__burger">
         <button className="burger__button button-nullstyle"  onClick={()=>{setBurgerSwap(!burgerSwap); setIsBurgerHiding(!isBurgerHiding) }}>
-          <img className="burger__img" src={burgerSwap?Burger:Close} />
+          <img className={burgerSwap?"burger__img":"burger__img--close"} src={burgerSwap?Burger:Close} />
         </button>
       </aside>
       <aside className="side-bar__lang">

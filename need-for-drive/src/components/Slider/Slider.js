@@ -22,6 +22,12 @@ const Slider = () => {
         </section>
         <button className="slider__button button-default">Подробнее</button>
       </article>
+      <div className="slider__state">
+        <div className="state__dot active"></div>
+        <div className="state__dot"></div>
+        <div className="state__dot"></div>
+        <div className="state__dot"></div>
+        </div>
       <div className="slider__control--right">
         <img src={RightIcon} className="control__image"></img>
       </div>

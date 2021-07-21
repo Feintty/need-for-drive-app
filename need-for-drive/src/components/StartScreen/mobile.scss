@@ -1,0 +1,126 @@
+@import "../../theme/fonts.scss";
+@import "../../theme/colors.scss";
+@import "../../theme/flex.scss";
+
+$start-screen-padding-horizontal: calc(100vw / 30);
+$start-screen-width: 100%;
+
+.start-screen {
+  @include flex-column;
+  justify-content: space-between;
+  position: relative;
+  width: $start-screen-width;
+  height: 100vh;
+  padding: 32px $start-screen-padding-horizontal;
+
+  .start-screen__header {
+    @include flex-column;
+    align-items: flex-end;
+    padding-bottom: 33px;
+    width: 100%;
+  }
+
+  .header__logo {
+    @include font-bold;
+    font-size: 30px;
+    line-height: 35px;
+    color: $color-accent;
+  }
+
+  .header__destination {
+    @include flex-row-space;
+    width: 94px;
+    color: $color-second;
+  }
+
+  .destination__name {
+    @include font-normal;
+    font-size: 14px;
+    line-height: 16px;
+  }
+}
+
+.start-screen__content {
+  width: 100%;
+  @include flex-column;
+  flex-grow: 1;
+  @mixin heading-size {
+    @include font-bold;
+    font-size: 32px;
+    line-height: 100%;
+  }
+
+  .content__heading-main {
+    @include heading-size;
+  }
+
+  .content__heading-second {
+    @include heading-size;
+    color: $color-accent;
+    margin-bottom: 34px;
+  }
+
+  .content__subheading {
+    @include font-light;
+    font-size: 18px;
+    line-height: 21px;
+    color: $color-second;
+    margin-bottom: 60px;
+  }
+
+  .content__button {
+    margin: calc(-100vw / 30);
+    width: 100vw;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 21px;
+    text-align: center;
+    border-radius: 0;
+  }
+}
+
+.start-screen__footer {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: flex-end;
+  justify-content: space-between;
+  background-color: $color-dark-light;
+  width: 100vw;
+  height: 75px;
+  font-size: 13px;
+  line-height: 15px;
+  padding: 16px;
+
+  @mixin link-props($color) {
+    text-decoration: none;
+    color: $color;
+    user-select: none;
+    transition: 0.3s ease-in-out;
+    li:visited {
+      color: $color;
+    }
+  }
+
+  .footer__info {
+    @include font-normal;
+    color: $color-second;
+  }
+
+  .footer__number {
+    @include font-normal;
+    @include link-props($color-accent);
+  }
+
+  .footer__number:hover {
+    color: $color-main-light;
+  }
+
+  .footer__number:active {
+    color: $color-main-light;
+  }
+}

@@ -24,7 +24,7 @@ const StartScreen = () => {
       </div>
       <footer className="start-screen__footer">
         <h4 className="footer__info">© 2016-2019 «Need for drive»</h4>
-        <h4 className="footer__number">8 (495) 234-22-44</h4>
+        <a href="tel:+8(495)234-22-44" className="footer__number link-light">8 (495) 234-22-44</a>
       </footer>
     </div>
   );
