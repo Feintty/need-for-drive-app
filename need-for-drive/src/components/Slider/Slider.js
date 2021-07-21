@@ -10,7 +10,7 @@ import RightIcon from "../../assets/icons/arrow-right.svg";
 const Slider = () => {
   return (
     <div className="slider">
-      <img src={ImgOne} className="slider__image visible"></img>
+      <img src={ImgOne} className="slider__image"></img>
       <div className="slider__control--left">
         <img src={LeftIcon} className="control__image"></img>
       </div>

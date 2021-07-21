@@ -19,14 +19,8 @@ $width: calc(100vw / 30);
   height: 100vh;
   object-fit: cover;
   transition: 0.5s ease-in-out;
-  opacity: 0%;
   z-index: 0;
   pointer-events: none;
-}
-
-.visible {
-  opacity: 100%;
-  z-index: 0;
 }
 
 .slider__control--right,
