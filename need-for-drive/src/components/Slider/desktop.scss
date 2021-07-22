@@ -38,6 +38,7 @@ $width: calc(100vw / 30);
 }
 
 .slider__article {
+  width: 100%;
   margin: 237px $width 0 $width;
   z-index: 0;
 }
