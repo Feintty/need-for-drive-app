@@ -1,6 +1,4 @@
-@import "../../theme/colors.scss";
-@import "../../theme/flex.scss";
-@import "../../theme/fonts.scss";
+@import "../../theme/local.scss";
 
 .burger-nav--main {
   position: absolute;
@@ -36,7 +34,7 @@
   @include flex-column;
   justify-content: space-between;
   height: 198px;
-  margin-bottom: 38px;
+  padding-left: 0;
 }
 
 .burger-nav__link {
@@ -44,6 +42,7 @@
   font-weight: 500;
   font-size: 32px;
   line-height: 37px;
+  list-style-type: none;
 }
 
 .socials__icon:hover{
@@ -53,6 +52,7 @@
 
 .burger-nav__socials{
     @include flex-row-space;
+    margin-top: 38px;
     width: 140px;
 }
 

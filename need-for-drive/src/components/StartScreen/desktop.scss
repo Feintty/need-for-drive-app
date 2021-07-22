@@ -1,6 +1,4 @@
-@import "../../theme/fonts.scss";
-@import "../../theme/colors.scss";
-@import "../../theme/flex.scss";
+@import "../../theme/local.scss";
 
 $start-screen-padding-horizontal: calc(100vw / 30);
 $start-screen-width: 50%;
@@ -12,7 +10,7 @@ $start-screen-width: 50%;
   min-width: 560px;
   padding: 32px $start-screen-padding-horizontal;
 
-  .start-screen__header {
+  &__header {
     @include flex-row-space;
     padding-bottom: 163px;
     width: 100%;

@@ -1,12 +1,12 @@
-import React from "react";
-import MainPage from "./pages/MainPage/MainPage";
+import React from "react"
+import MainPage from "./pages/MainPage/MainPage"
 
 function Wrapper() {
   return (
     <div className="wrapper">
-      <MainPage/>
+      <MainPage />
     </div>
-  );
+  )
 }
 
-export default Wrapper;
+export default Wrapper
