@@ -1,0 +1,49 @@
+@import "../../theme/local.scss";
+
+$sider-bar-width: 64px;
+
+
+.side-bar {
+    position: absolute;
+    @include flex-column-space;
+    width: $sider-bar-width;
+    height: 100vh;
+    padding: 32px 0 17px 0;
+  }
+
+  .lang__button{
+      display: none;
+  }
+
+  .burger__button{
+    position: relative;
+    @include font-bold;
+    font-size: 13px;
+    user-select: none;
+    border: none;
+    background: none;
+    width: 19px;
+    height: 32px;
+    padding: 0;
+    transition: 0.3s ease-in-out;
+    z-index: 3;
+    object-fit:fill;
+  }
+
+  .burger__button:hover {
+    filter: brightness(0.7);
+  }
+  
+  .burger__img {
+    filter: brightness(0);
+    object-fit: fill;
+    width: 19px;
+    height: 32px;
+  }
+
+  .burger__img--close {
+    filter: brightness(1);
+    object-fit: fill;
+    width: 19px;
+    height: 32px;
+  }

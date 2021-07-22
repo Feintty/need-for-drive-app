@@ -1,0 +1,86 @@
+@import "../../theme/local.scss";
+
+$width: calc(100vw / 30);
+
+.slider {
+  width: 50%;
+  position: relative;
+  @include flex-row;
+  justify-content: space-between;
+}
+
+.slider__image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  object-fit: cover;
+  transition: 0.5s ease-in-out;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.slider__control--right,
+.slider__control--left {
+  @include flex-center;
+  z-index: 0;
+  height: 100vh;
+  min-width: $width;
+  transition: 0.3s ease-in-out;
+  user-select: none;
+}
+
+.slider__control--right:hover,
+.slider__control--left:hover {
+  cursor: pointer;
+  background-color: $color-accent-low-opacity;
+}
+
+.slider__article {
+  margin: 237px $width 0 $width;
+  z-index: 0;
+}
+
+.slider__heading {
+  @include font-normal;
+  color: $color-main-light;
+  font-weight: 500;
+  font-size: 40px;
+  line-height: 47px;
+  margin-bottom: 8px;
+}
+
+.slider__section {
+  @include font-light;
+  font-size: 24px;
+  line-height: 90%;
+  color: $color-disabled;
+  margin-bottom: 32px;
+}
+
+.slider__button {
+  width: 164px;
+}
+
+.slider__state {
+  @include flex-row-space;
+  bottom:32px;
+  left:50%;
+  margin-left: -28px;
+  position: absolute;
+min-width: 56px;
+height: 8px;
+}
+
+.state__dot{
+  min-width: 8px;
+  min-height: 8px;
+  background-color: $color-main-light;
+  z-index: 1;
+  border-radius: 50%;
+}
+
+.active{
+  background-color: $color-accent;
+}
