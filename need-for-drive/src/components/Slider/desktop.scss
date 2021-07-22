@@ -79,6 +79,7 @@ height: 8px;
   background-color: $color-main-light;
   z-index: 1;
   border-radius: 50%;
+  transition: 0.3s ease-in-out;
 }
 
 .active{
