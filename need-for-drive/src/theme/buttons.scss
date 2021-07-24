@@ -2,21 +2,11 @@
 @import "./fonts.scss";
 
 $button-brightness: 100%;
-$button-gradient: linear-gradient(
-  90deg,
-  hsl(148, 87%, 41%) 2.61%,
-  hsl(158, 96%, 32%) 112.6%
-);
-$button-gradient-mid-bright: linear-gradient(
-  90deg,
-  hsl(148, 87%, 31%) 2.61%,
-  hsl(158, 96%, 22%) 112.6%
-);
-$button-gradient-low-bright: linear-gradient(
-  90deg,
-  hsl(148, 87%, 21%) 2.61%,
-  hsl(158, 96%, 12%) 112.6%
-);
+$default-gradient: linear-gradient(90deg, #0ec261 2.61%, #039f67 112.6%);
+$green-gradient: linear-gradient(90deg, #13493F 0%, #0C7B1B 100%);
+$mint-gradient: linear-gradient(90deg, #132949 0%, #0C7B67 100%);
+$red-gradient: linear-gradient(90deg, #493013 0%, #7B0C3B 100%);
+$purple-gradient: linear-gradient(90deg, #281349 0%, #720C7B 100%);
 
 button:hover {
   cursor: pointer;
@@ -24,29 +14,46 @@ button:hover {
 
 @mixin button-props {
   @include font-normal;
+  position: relative;
   user-select: none;
   height: 48px;
   border: 0px;
   transition: 0.3s ease-in-out;
+  background: none;
+}
+
+@mixin button-background($gradient) {
+  &::before {
+    content: " ";
+    top: 0;
+    left: 0;
+    position: absolute;
+    width: inherit;
+    height: inherit;
+    background: $gradient;
+    z-index: -1;
+    border-radius: 8px;
+    transition: 0.2s ease-in-out;
+  }
+
+  &:hover::before {
+    filter: brightness($button-brightness - 10%);
+  }
+
+  &:focus::before {
+    filter: brightness($button-brightness - 10%);
+  }
+
+  &:active::before {
+    filter: brightness($button-brightness - 20%);
+  }
 }
 
 .button-default {
   @include button-props;
   color: $color-main-light;
-  background: $button-gradient;
+  @include button-background($default-gradient);
   border-radius: 8px;
-}
-
-.button-default:focus {
-  background: $button-gradient-mid-bright;
-}
-
-.button-default:hover {
-  background: $button-gradient-mid-bright;
-}
-
-.button-default:active {
-  background: $button-gradient-low-bright;
 }
 
 .button-disabled {
@@ -75,3 +82,30 @@ button:hover {
   color: $color-accent;
 }
 
+.button-colorized-green {
+  @include button-props;
+  color: $color-main-light;
+  @include button-background($green-gradient);
+  border-radius: 8px;
+}
+
+.button-colorized-mint {
+  @include button-props;
+  color: $color-main-light;
+  @include button-background($mint-gradient);
+  border-radius: 8px;
+}
+
+.button-colorized-red {
+  @include button-props;
+  color: $color-main-light;
+  @include button-background($red-gradient);
+  border-radius: 8px;
+}
+
+.button-colorized-purple {
+  @include button-props;
+  color: $color-main-light;
+  @include button-background($purple-gradient);
+  border-radius: 8px;
+}
