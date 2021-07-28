@@ -1,0 +1,19 @@
+@import "../../theme/local.scss";
+
+.breadcrumbs {
+  @include flex-row;
+  @include font-bold;
+  align-items: center;
+  border-bottom: 1px solid $color-disabled;
+  border-top: 1px solid $color-disabled;
+  padding: 0 $size-large;
+  height: $size-mid-locked;
+  *{
+      margin-right: 16px;
+      color: $color-second;
+  }
+}
+
+.current{
+    color:$color-accent;
+}
