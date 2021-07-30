@@ -1,0 +1,120 @@
+@import "../../theme/local.scss";
+.bill {
+  box-sizing: border-box;
+  width: 320px;
+  font-family: Roboto;
+  border-left: 1px solid $color-disabled;
+  height: 100%;
+  padding: $size-mid-locked 0 $size-mid-locked $size-mid;
+  flex-shrink: 0;
+
+  .bill__element {
+    position: relative;
+    width: 100%;
+    @include flex-row;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+
+  .bill__heading {
+    @include font-bold;
+    font-size: 18px;
+    line-height: 21px;
+    margin-bottom: 26px;
+  }
+
+  .bill__dots {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    height: 16px;
+    left: 0;
+    color: $color-second;
+    z-index: -1;
+    bottom: 0;
+    line-height: 13px;
+    text-align: justify;
+    div {
+      text-align: justify;
+    }
+  }
+
+  .bill__element-name {
+    background-color: white;
+    padding-right: 10px;
+  }
+
+  .span {
+    padding: 0;
+  }
+
+  .bill__option {
+    color: $color-second;
+    background-color: white;
+    padding-left: 6px;
+    max-width: 107px;
+  }
+
+  .bill__option,
+  .bill__element-name {
+    font-size: 14px;
+    line-height: 16px;
+    font-weight: 300;
+  }
+
+  .bill__element {
+    max-width: 277px;
+  }
+
+  .bill__element:not(:last-child) {
+    margin-bottom: $size-small-locked;
+  }
+
+  .bill__element:last-child {
+    margin-bottom: $size-mid-locked;
+  }
+
+  .bill__price {
+    font-size: 16px;
+    line-height: 16px;
+    margin-bottom: $size-mid-locked;
+  }
+
+  .bill__button{
+    width: 289px;
+  }
+}
+
+@media only screen and (min-width: 0px) and (max-width: 767px) {
+  .bill {
+    width: 100%;
+    border: none;
+    border-top: 1px solid $color-disabled;
+    height: auto;
+  }
+  .bill__heading {
+    text-align: left;
+  }
+
+  .bill__button{
+    width: 100vw !important;
+    margin: calc(-100vw / 15);
+    border-radius: 0 !important;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
+  .bill {
+    width: 280px;
+    height: 100%;
+  }
+  .bill__heading {
+    text-align: right;
+  }
+}
+
+@media only screen and (min-width: 1023px) {
+  .bill__heading {
+    text-align: right;
+  }
+}

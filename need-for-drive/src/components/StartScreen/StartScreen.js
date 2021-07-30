@@ -1,5 +1,6 @@
 import React from "react"
 import "./StartScreen.scss"
+import { Link } from "react-router-dom"
 import Header from "../Header/Header"
 
 const StartScreen = () => (
@@ -11,9 +12,11 @@ const StartScreen = () => (
       <h3 className="content__subheading">
         Поминутная аренда авто твоего города
       </h3>
-      <button type="button" className="content__button button-default">
-        Забронировать
-      </button>
+      <Link to="/order">
+        <button type="button" className="content__button button-default">
+          Забронировать
+        </button>
+      </Link>
     </div>
     <footer className="start-screen__footer">
       <h4 className="footer__info">© 2016-2019 «Need for drive»</h4>

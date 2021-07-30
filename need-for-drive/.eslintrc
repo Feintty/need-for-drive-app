@@ -3,10 +3,11 @@
   "plugins": ["jsx-a11y", "prettier"],
   "rules": {
     "endOfLine": 0,
+    "no-noninteractive-element-to-interactive-role":0,
     "semi": 0,
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx", "ts", ".tsx", ".native.js"] }],
     "prettier/prettier": [
-      "error",
+      "warn",
       {
         "semi": false,
         "endOfLine": "auto",
