@@ -12,6 +12,23 @@
     margin-right: 16px;
     color: $color-second;
   }
+  .breadcrumbs__element{
+    border:none;
+    background: none;
+    color: $color-second;
+  }
+
+  img:last-child{
+    display: none;
+  }
+  
+  .current {
+    color: $color-accent;
+  }
+  
+  .completed{
+    color: $color-main;
+  }
 }
 
 
@@ -27,6 +44,3 @@
   }
 }
 
-.current {
-  color: $color-accent;
-}

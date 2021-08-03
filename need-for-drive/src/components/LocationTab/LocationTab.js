@@ -1,16 +1,13 @@
 import React from "react"
 import "./LocationTab.scss"
 import Map from "../Map/Map"
-import SearchInput from "../SearchInput/SearchInput"
+import TextInput from "../TextInput/TextInput"
 
 const LocationTab = () => (
   <div className="location-tab">
     <div className="location-tab__inputs">
-      <SearchInput
-        description="Город"
-        placeholder="Начните вводить город ..."
-      />
-      <SearchInput
+      <TextInput description="Город" placeholder="Начните вводить город ..." />
+      <TextInput
         description="Пункт выдачи"
         placeholder="Начните вводить пункт ..."
       />

@@ -1,9 +1,9 @@
 import React, { useState } from "react"
 import PropTypes from "prop-types"
-import "./SearchInput.scss"
+import "./TextInput.scss"
 import CloseIcon from "../../assets/icons/close.svg"
 
-const SearchInput = ({ description, placeholder }) => {
+const TextInput = ({ description, placeholder }) => {
   const [inputText, setInputText] = useState("")
   const [isCloseVisible, setIsCloseVisible] = useState(false)
   const [isDatalistVisible, setIsDatalistVisible] = useState(false)
@@ -31,15 +31,15 @@ const SearchInput = ({ description, placeholder }) => {
   }
 
   return (
-    <div className="search-input">
-      <span className="search-input__description">{description}</span>
+    <div className="text-input">
+      <span className="text-input__description">{description}</span>
       <input
         value={inputText}
         onChange={onInputChange}
         onFocus={onInputFocus}
         onBlur={onInputBlur}
         placeholder={placeholder}
-        className="search-input__text-field"
+        className="text-input__text-field"
         type="text"
       />
       <img
@@ -48,41 +48,39 @@ const SearchInput = ({ description, placeholder }) => {
         role="none"
         onMouseDown={onCloseClick}
         className={
-          isCloseVisible
-            ? "search-input__close"
-            : "search-input__close disabled"
+          isCloseVisible ? "text-input__close" : "text-input__close disabled"
         }
         src={CloseIcon}
       />
       <div
         className={
           isDatalistVisible
-            ? "search-input__datalist"
-            : "search-input__datalist disabled"
+            ? "text-input__datalist"
+            : "text-input__datalist disabled"
         }>
-        <span className="search-input__data-element">Ульяновск</span>
-        <span className="search-input__data-element">Ульяновск</span>
-        <span className="search-input__data-element">Ульяновск</span>
-        <span className="search-input__data-element">Ульяновск</span>
-        <span className="search-input__data-element">Ульяновск</span>
-        <span className="search-input__data-element">Ульяновск</span>
-        <span className="search-input__data-element">Ульяновск</span>
-        <span className="search-input__data-element">Ульяновск</span>
-        <span className="search-input__data-element">Ульяновск</span>
-        <span className="search-input__data-element">Ульяновск</span>
+        <span className="text-input__data-element">Ульяновск</span>
+        <span className="text-input__data-element">Ульяновск</span>
+        <span className="text-input__data-element">Ульяновск</span>
+        <span className="text-input__data-element">Ульяновск</span>
+        <span className="text-input__data-element">Ульяновск</span>
+        <span className="text-input__data-element">Ульяновск</span>
+        <span className="text-input__data-element">Ульяновск</span>
+        <span className="text-input__data-element">Ульяновск</span>
+        <span className="text-input__data-element">Ульяновск</span>
+        <span className="text-input__data-element">Ульяновск</span>
       </div>
     </div>
   )
 }
 
-SearchInput.propTypes = {
+TextInput.propTypes = {
   description: PropTypes.string,
   placeholder: PropTypes.string
 }
 
-SearchInput.defaultProps = {
+TextInput.defaultProps = {
   description: undefined,
   placeholder: undefined
 }
 
-export default SearchInput
+export default TextInput

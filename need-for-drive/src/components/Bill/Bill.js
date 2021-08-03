@@ -13,24 +13,20 @@ const Bill = ({
   rightHand,
   price
 }) => {
-  //
-  //   .toString()
-  //   .split("")
-  //   .slice(startWord.split("").length)
-
-  const createBillElement = (elementName, option) =>
-    option ? (
+  const createBillElement = (elementName, option) => {
+    if (!option) {
+      return null
+    }
+    return (
       <div className="bill__element">
-        <span className="bill__dots">
-          .......................................................
-        </span>
+        <span className="bill__dots" />
         <span className="bill__element-name">{elementName}</span>
         <span className="bill__option">{option}</span>
       </div>
-    ) : null
-
+    )
+  }
   const createPrice = () => {
-    let normalizedPrice = false
+    let normalizedPrice = null
     if (price) {
       normalizedPrice =
         price.length === 2 ? `от ${price[0]} до ${price[1]} ₽` : `${price[0]} ₽`
@@ -45,31 +41,11 @@ const Bill = ({
         {createBillElement("Пункт выдачи", point)}
         {createBillElement("Модель", model)}
         {createBillElement("Цвет", color)}
-        {time ? (
-          <div className="bill__element">
-            Длительность аренды:<div className="bill__option">{time}</div>
-          </div>
-        ) : null}
-        {tariff ? (
-          <div className="bill__element">
-            Тариф:<div className="bill__option">{tariff}</div>
-          </div>
-        ) : null}
-        {fullTank ? (
-          <div className="bill__element">
-            Полный бак:<div className="bill__option">{fullTank}</div>
-          </div>
-        ) : null}
-        {babyChair ? (
-          <div className="bill__element">
-            Детское кресло:<div className="bill__option">{babyChair}</div>
-          </div>
-        ) : null}
-        {rightHand ? (
-          <div className="bill__element">
-            Правый руль:<div className="bill__option">{rightHand}</div>
-          </div>
-        ) : null}
+        {createBillElement("Длительность аренды:", time)}
+        {createBillElement("Тариф:", tariff)}
+        {createBillElement("Полный бак:", fullTank)}
+        {createBillElement("Детское кресло:", babyChair)}
+        {createBillElement("Правый руль:", rightHand)}
       </div>
       <div className="bill__price">Цена: {createPrice()}</div>
       <button type="button" className="bill__button button-disabled">
@@ -89,18 +65,6 @@ Bill.propTypes = {
   babyChair: PropTypes.string,
   rightHand: PropTypes.string,
   price: PropTypes.arrayOf([PropTypes.number, PropTypes.number])
-}
-
-Bill.defaultProps = {
-  point: false,
-  model: false,
-  color: false,
-  time: false,
-  tariff: false,
-  fullTank: false,
-  babyChair: false,
-  rightHand: false,
-  price: false
 }
 
 export default Bill

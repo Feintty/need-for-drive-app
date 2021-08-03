@@ -54,7 +54,9 @@ const Slider = () => {
       <article className="slider__article">
         <h2 className="slider__heading">{headers[currentBlock]}</h2>
         <section className="slider__section">{content[currentBlock]}</section>
-        <button type="button" className={buttonClasses[currentBlock]}>
+        <button
+          type="button"
+          className={`slider__button ${buttonClasses[currentBlock]}`}>
           Подробнее
         </button>
       </article>

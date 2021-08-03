@@ -1,6 +1,6 @@
 @import "../../theme/local.scss";
 
-.search-input {
+.text-input {
   @include font-light;
   position: relative;
   font-size: 14px;
@@ -8,7 +8,7 @@
   line-height: 16px;
 }
 
-.search-input__text-field {
+.text-input__text-field {
   height: 20px;
   width: 224px;
   border: none;
@@ -16,7 +16,7 @@
   padding: 3px 10px;
 }
 
-.search-input__close {
+.text-input__close {
   position: absolute;
   right: 0;
   top: 0;
@@ -25,22 +25,22 @@
   cursor: pointer;
 }
 
-.search-input__text-field:focus {
+.text-input__text-field:focus {
   outline: none;
 }
 
-.search-input__description {
+.text-input__description {
   margin-right: 8px;
 }
 
-.search-input__datalist {
+.text-input__datalist {
   @include flex-column;
   align-content: flex-start;
   align-items: flex-start;
   position: absolute;
   right: 0;
   width: 224px;
-  height: 106px;
+  max-height: 106px;
   border: 1px solid $color-disabled;
   overflow-y: scroll;
   z-index: 2;
@@ -63,7 +63,7 @@
   }
 }
 
-.search-input__data-element {
+.text-input__data-element {
   width: auto;
   padding: 3px 8px;
   cursor: pointer;
@@ -77,7 +77,7 @@
 
 @media only screen and (min-width: 0px) and
 (max-width: 767px){
-    .search-input__text-field {
+    .text-input__text-field {
         width: 190px;
       }
 };
