@@ -12,13 +12,17 @@ import { content } from "./SliderContent"
 const Slider = () => {
   const [currentBlock, setCurrentBlock] = useState(0)
   const headers = ["Бесплатная парковка", "Страховка", "Бензин", "Обслуживание"]
-  const dots = [
-    <div className={currentBlock === 0 ? "state__dot active" : "state__dot"} />,
-    <div className={currentBlock === 1 ? "state__dot active" : "state__dot"} />,
-    <div className={currentBlock === 2 ? "state__dot active" : "state__dot"} />,
-    <div className={currentBlock === 3 ? "state__dot active" : "state__dot"} />
-  ]
   const backgrounds = [ImgOne, ImgTwo, ImgThree, ImgFour]
+  const dots = () =>
+    new Array(4)
+      .fill()
+      .map((el, index) => (
+        <div
+          className={
+            currentBlock === index ? "state__dot active" : "state__dot"
+          }
+        />
+      ))
 
   const onClickLeft = () => {
     if (currentBlock === 0) {
@@ -60,7 +64,7 @@ const Slider = () => {
           Подробнее
         </button>
       </article>
-      <div className="slider__state">{dots.map((el) => el)}</div>
+      <div className="slider__state">{dots()}</div>
       <div
         onKeyPress
         onClick={onClickRight}
