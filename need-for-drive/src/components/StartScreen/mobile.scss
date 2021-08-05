@@ -10,32 +10,6 @@ $start-screen-width: 100%;
   width: $start-screen-width;
   height: 100vh;
   padding: 32px $start-screen-padding-horizontal;
-
-  .start-screen__header {
-    @include flex-column;
-    align-items: flex-end;
-    padding-bottom: 33px;
-    width: 100%;
-  }
-
-  .header__logo {
-    @include font-bold;
-    font-size: 30px;
-    line-height: 35px;
-    color: $color-accent;
-  }
-
-  .header__destination {
-    @include flex-row-space;
-    width: 94px;
-    color: $color-second;
-  }
-
-  .destination__name {
-    @include font-normal;
-    font-size: 14px;
-    line-height: 16px;
-  }
 }
 
 .start-screen__content {

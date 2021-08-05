@@ -1,0 +1,39 @@
+@import "../../theme/local.scss";
+
+.location-tab {
+  @include flex-column;
+  height: 100%;
+  padding: $size-mid-locked 0;
+  flex-grow: 1;
+  align-items: flex-start;
+  margin-right: $size-mid;
+
+  .location-tab__inputs {
+    height: 50px;
+    @include flex-column;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom:45px;
+  }
+
+  .location-tab__description {
+    @include font-light;
+    font-size: 14px;
+    line-height: 16px;
+    margin-bottom: $size-small-locked;
+  }
+  .location-tab__map{
+      width: 100%;
+  }
+}
+
+@media only screen and (min-width: 0px) and
+(max-width: 767px){
+    .location-tab{
+        height: auto;
+        flex-grow: 0;
+        margin: 0
+    }
+};
+
+
