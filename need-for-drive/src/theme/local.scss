@@ -1,3 +1,18 @@
 @import "./colors.scss";
 @import "./flex.scss";
 @import "./fonts.scss";
+
+$size-large: calc(100vw / 22.5);
+$size-mid: calc((100vw / 22.5) / 2);
+$size-small: calc((100vw / 22.5) / 4);
+$size-large-locked: 64px;
+$size-mid-locked: 32px;
+$size-small-locked: 16px;
+
+body .disabled{
+    display: none;
+}
+
+*{
+    font-family: Roboto;
+}

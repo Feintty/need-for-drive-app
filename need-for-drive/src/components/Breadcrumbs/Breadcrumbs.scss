@@ -1,0 +1,46 @@
+@import "../../theme/local.scss";
+
+.breadcrumbs {
+  @include flex-row;
+  @include font-bold;
+  align-items: center;
+  border-bottom: 1px solid $color-disabled;
+  border-top: 1px solid $color-disabled;
+  padding: 0 $size-large;
+  height: $size-mid-locked;
+  * {
+    margin-right: 16px;
+    color: $color-second;
+  }
+  .breadcrumbs__element{
+    border:none;
+    background: none;
+    color: $color-second;
+  }
+
+  img:last-child{
+    display: none;
+  }
+  
+  .current {
+    color: $color-accent;
+  }
+  
+  .completed{
+    color: $color-main;
+  }
+}
+
+
+@media only screen and (min-width: 0px) and (max-width: 767px) {
+  .breadcrumbs {
+    @include font-light;
+    font-size: 3vw;
+    line-height: 16px;
+    * {
+      margin-right: 7px;
+      color: $color-second;
+    }
+  }
+}
+

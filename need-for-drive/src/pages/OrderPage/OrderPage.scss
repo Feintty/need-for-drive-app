@@ -1,0 +1,43 @@
+@import "../../theme/local.scss";
+.order-page {
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+  }
+
+  .order-page__content{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .order-page-padding{
+    padding: $size-mid $size-large;
+  }
+
+  .order-page__tabs{
+    padding: 0 $size-large;
+    height: 100%;
+  }
+
+@media only screen and (min-width: 0px) and
+(max-width: 767px){
+  .order-page__tabs{
+    @include flex-column;
+  }
+};
+
+@media only screen and (min-width: 768px) and
+(max-width: 1023px){
+  .order-page__tabs{
+    @include flex-row;
+    justify-content: space-between;
+  }
+};
+
+@media only screen and (min-width: 1023px){
+  .order-page__tabs{
+    @include flex-row;
+    justify-content: space-between;
+  }
+}

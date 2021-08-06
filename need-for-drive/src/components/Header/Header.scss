@@ -1,0 +1,65 @@
+@import "../../theme/local.scss";
+
+$padding-bottom-large: 163px;
+$padding-bottom-short: 33px;
+
+@mixin flex-mobile {
+  @include flex-column;
+  align-items: flex-end;
+}
+
+@media only screen and (min-width: 0px) and (max-width: 767px) {
+  .header {
+    @include flex-mobile;
+  }
+
+  .main-page-padding{
+    padding-bottom: $padding-bottom-short;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
+  .header {
+    @include flex-row-space;
+    padding-bottom: $padding-bottom-large;
+  }
+
+  .main-page-padding{
+    padding-bottom: $padding-bottom-large;
+  }
+}
+
+@media only screen and (min-width: 1023px) {
+  .header {
+    @include flex-row-space;
+  }
+
+  .main-page-padding{
+    padding-bottom: $padding-bottom-large;
+  }
+}
+
+.header {
+  width: 100%;
+}
+
+
+
+.header__logo {
+  @include font-bold;
+  font-size: 30px;
+  line-height: 35px;
+  color: $color-accent;
+}
+
+.header__destination {
+  @include flex-row-space;
+  width: 94px;
+  color: $color-second;
+}
+
+.destination__name {
+  @include font-normal;
+  font-size: 14px;
+  line-height: 16px;
+}
