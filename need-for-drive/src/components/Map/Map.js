@@ -1,3 +1,4 @@
+
 import React from "react"
 import "./Map.scss"
 import PropTypes from "prop-types"
@@ -36,7 +37,6 @@ const Map = ({ focus, zoom, markers, setCityAndPoint }) => {
         />
       )
     })
-
   return (
     <MapContainer
       className="map"

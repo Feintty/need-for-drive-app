@@ -1,7 +1,9 @@
+
 import React, { useState, useEffect } from "react"
 import PropTypes from "prop-types"
 import "./TextInput.scss"
 import CloseIcon from "../../assets/icons/close.svg"
+
 
 const TextInput = ({
   description,
@@ -29,7 +31,6 @@ const TextInput = ({
     setIsCloseVisible(false)
     setIsDatalistVisible(false)
   }
-
   const onItemClick = (e) => {
     if (setDataElement) {
       setDataElement(e.target.innerText)
@@ -57,7 +58,7 @@ const TextInput = ({
       setFilteredData(datalistItems)
     }
   }, [datalistItems, inputText])
-
+  
   return (
     <div className="text-input">
       <span className="text-input__description">{description}</span>
@@ -95,6 +96,7 @@ const TextInput = ({
               {item.name}
             </span>
           ))}
+
       </div>
     </div>
   )

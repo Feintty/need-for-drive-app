@@ -15,6 +15,13 @@
 }
 
 @font-face {
+  font-family: "Roboto-Mono";
+  font-style: normal;
+  font-weight: 300;
+  src: local("Roboto"), url("../assets/fonts/RobotoMono-Light.ttf") format("truetype");
+}
+
+@font-face {
   font-family: "Roboto";
   font-style: normal;
   font-weight: bold;

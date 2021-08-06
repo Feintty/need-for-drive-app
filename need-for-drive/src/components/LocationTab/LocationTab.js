@@ -222,4 +222,5 @@ LocationTab.propTypes = {
   cityAndPointToOrder: PropTypes.func
 }
 
+
 export default LocationTab
