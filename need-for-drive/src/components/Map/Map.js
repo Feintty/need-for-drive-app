@@ -1,28 +1,67 @@
-import React, { useState } from "react"
+import React from "react"
 import "./Map.scss"
-import { TileLayer, MapContainer, Marker, Popup } from "react-leaflet"
+import PropTypes from "prop-types"
+import { TileLayer, MapContainer, Marker, useMap } from "react-leaflet"
 import MapMarker from "./MapMarker"
 
-const Map = () => {
-  const [position] = useState([54.3107593, 48.3642771])
+function FocusChange({ position }) {
+  const map = useMap()
+  map.setView(position)
+  return null
+}
+
+const Map = ({ focus, zoom, markers, setCityAndPoint }) => {
+  const createMarkers = () =>
+    markers.map((marker) => {
+      const latlng = marker.locations.find(
+        (location) => location.adminArea1 === "RU"
+      ).latLng
+      const city = marker.providedLocation.location.split(",")[0]
+      const address = marker.providedLocation.location
+        .split(",")
+        .slice(1)
+        .toString()
+      return (
+        <Marker
+          position={[latlng.lat, latlng.lng]}
+          icon={MapMarker}
+          city={city}
+          address={address}
+          fullAddress={marker.providedLocation.location}
+          eventHandlers={{
+            mousedown: (e) => {
+              setCityAndPoint(e.target.options.city, e.target.options.address)
+            }
+          }}
+        />
+      )
+    })
+
   return (
     <MapContainer
       className="map"
       attributionControl={false}
       zoomControl={false}
-      center={position}
-      zoom={13}>
+      center={focus}
+      zoom={zoom}
+      dragging
+      animate
+      easeLinearity={0.35}>
       <TileLayer
         attribution='&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors'
-        url="https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png?api_key=b4b52b45-73fc-4229-ad23-4bf5255d0f7f"
+        url={`https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png?api_key=${process.env.REACT_APP_LEAFLET_KEY}`}
       />
-      <Marker position={position} icon={MapMarker}>
-        <Popup>
-          A pretty CSS3 popup. <br /> Easily customizable.
-        </Popup>
-      </Marker>
+      {createMarkers().map((el) => el)}
+      <FocusChange position={focus} />
     </MapContainer>
   )
+}
+
+Map.propTypes = {
+  zoom: PropTypes.number,
+  focus: PropTypes.arrayOf(PropTypes.number),
+  markers: PropTypes.objectOf,
+  setCityAndPoint: PropTypes.func
 }
 
 export default Map

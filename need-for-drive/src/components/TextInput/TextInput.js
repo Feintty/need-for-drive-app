@@ -1,15 +1,28 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import PropTypes from "prop-types"
 import "./TextInput.scss"
 import CloseIcon from "../../assets/icons/close.svg"
 
-const TextInput = ({ description, placeholder }) => {
-  const [inputText, setInputText] = useState("")
+const TextInput = ({
+  description,
+  placeholder,
+  datalistItems,
+  setDataElement,
+  text
+}) => {
+  const [inputText, setInputText] = useState(text)
+  const [filteredData, setFilteredData] = useState()
   const [isCloseVisible, setIsCloseVisible] = useState(false)
   const [isDatalistVisible, setIsDatalistVisible] = useState(false)
 
+  useEffect(() => {
+    setInputText(text)
+    setDataElement(text)
+  }, [text])
+
   const onInputFocus = () => {
     setIsCloseVisible(true)
+    setIsDatalistVisible(true)
   }
 
   const onInputBlur = () => {
@@ -17,18 +30,33 @@ const TextInput = ({ description, placeholder }) => {
     setIsDatalistVisible(false)
   }
 
+  const onItemClick = (e) => {
+    if (setDataElement) {
+      setDataElement(e.target.innerText)
+    }
+    setInputText(e.target.innerText)
+  }
+
   const onInputChange = (e) => {
     setInputText(e.target.value)
-    if (e.target.value === "") {
-      setIsDatalistVisible(false)
-    } else {
-      setIsDatalistVisible(true)
-    }
   }
 
   const onCloseClick = () => {
     setInputText("")
+    setDataElement("")
   }
+
+  useEffect(() => {
+    if (!!datalistItems && inputText !== "") {
+      setFilteredData(
+        datalistItems.filter((item) =>
+          RegExp(`^${inputText.toLowerCase()}`).test(item.name.toLowerCase())
+        )
+      )
+    } else if (datalistItems) {
+      setFilteredData(datalistItems)
+    }
+  }, [datalistItems, inputText])
 
   return (
     <div className="text-input">
@@ -58,16 +86,15 @@ const TextInput = ({ description, placeholder }) => {
             ? "text-input__datalist"
             : "text-input__datalist disabled"
         }>
-        <span className="text-input__data-element">Ульяновск</span>
-        <span className="text-input__data-element">Ульяновск</span>
-        <span className="text-input__data-element">Ульяновск</span>
-        <span className="text-input__data-element">Ульяновск</span>
-        <span className="text-input__data-element">Ульяновск</span>
-        <span className="text-input__data-element">Ульяновск</span>
-        <span className="text-input__data-element">Ульяновск</span>
-        <span className="text-input__data-element">Ульяновск</span>
-        <span className="text-input__data-element">Ульяновск</span>
-        <span className="text-input__data-element">Ульяновск</span>
+        {filteredData &&
+          filteredData.map((item) => (
+            <span
+              className="text-input__data-element"
+              onMouseDown={onItemClick}
+              role="none">
+              {item.name}
+            </span>
+          ))}
       </div>
     </div>
   )
@@ -75,12 +102,10 @@ const TextInput = ({ description, placeholder }) => {
 
 TextInput.propTypes = {
   description: PropTypes.string,
-  placeholder: PropTypes.string
-}
-
-TextInput.defaultProps = {
-  description: undefined,
-  placeholder: undefined
+  placeholder: PropTypes.string,
+  datalistItems: PropTypes.arrayOf(PropTypes.string),
+  setDataElement: PropTypes.func,
+  text: PropTypes.string
 }
 
 export default TextInput
