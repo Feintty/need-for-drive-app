@@ -46,24 +46,22 @@ const OrderPage = () => {
     setCurrentTab(currentTab + 1)
   }
 
+  const changeBoolLocation = (tab, bool) => {
+    const altLocation = completedLocations
+    altLocation[tab].isCompleted = bool
+    setCompletedLocations(altLocation)
+  }
+
   useEffect(() => {
-    if (order.carId) {
-      const alt = completedLocations
-      alt[1].isCompleted = true
-      setCompletedLocations(alt)
-    } else {
-      const alt = completedLocations
-      alt[1].isCompleted = false
-      setCompletedLocations(alt)
-    }
     if (order.cityId.cityId && order.pointId.pointId) {
-      const alt = completedLocations
-      alt[0].isCompleted = true
-      setCompletedLocations(alt)
+      changeBoolLocation(0, true)
     } else {
-      const alt = completedLocations
-      alt[0].isCompleted = false
-      setCompletedLocations(alt)
+      changeBoolLocation(1, false)
+    }
+    if (order.carId) {
+      changeBoolLocation(1, true)
+    } else {
+      changeBoolLocation(1, false)
     }
   }, [order])
 
