@@ -2,6 +2,7 @@
 @import "./flex.scss";
 @import "./fonts.scss";
 
+$size-max-large: calc((100vw / 22.5)* 2);
 $size-large: calc(100vw / 22.5);
 $size-mid: calc((100vw / 22.5) / 2);
 $size-small: calc((100vw / 22.5) / 4);

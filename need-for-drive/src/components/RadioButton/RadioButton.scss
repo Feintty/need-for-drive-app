@@ -1,0 +1,26 @@
+@import "../../theme/local.scss";
+.radio-button {
+  @include flex-row;
+  align-items: flex-end;
+  height: 16px;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 16px;
+  transition: 0.2s ease-in-out;
+  color: $color-second;
+
+  .radio-button__marker {
+    width: 12px;
+    height: 12px;
+    border: 1px solid $color-second;
+    border-radius: 12px;
+    margin-right: 8px;
+    margin-bottom: 3px;
+  }
+}
+.checked {
+  color: $color-main;
+  .radio-button__marker {
+    border: 3px solid $color-accent;
+  }
+}

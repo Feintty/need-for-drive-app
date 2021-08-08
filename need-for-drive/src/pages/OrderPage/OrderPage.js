@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import "./OrderPage.scss"
 import BurgerNav from "../../components/Burger/BurgerNav"
 import Header from "../../components/Header/Header"
@@ -6,9 +6,70 @@ import SideBar from "../../components/SideBar/SideBar"
 import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs"
 import Bill from "../../components/Bill/Bill"
 import LocationTab from "../../components/LocationTab/LocationTab"
+import CarsTab from "../../components/CarsTab/CarsTab"
 
 const OrderPage = () => {
   const [swapBurger, setSwapBurger] = useState(true)
+  const [currentTab, setCurrentTab] = useState(0)
+  const [isCurrentTabCompleted, setIsCurrentTabCompleted] = useState(false)
+  const [completedLocations, setCompletedLocations] = useState([
+    { isCompleted: false },
+    { isCompleted: false },
+    { isCompleted: false },
+    { isCompleted: false }
+  ])
+
+  const [order, setOrder] = useState({
+    orderStatusId: {},
+    cityId: { pointId: null },
+    pointId: { pointId: null },
+    carId: null,
+    color: null,
+    dateFrom: 0,
+    dateTo: 0,
+    rateId: {},
+    price: 0,
+    isFullTank: true,
+    isNeedChildChair: true,
+    isRightWheel: true
+  })
+
+  const cityAndPointToOrder = (cityId, pointId) => {
+    setOrder({ ...order, cityId: { cityId }, pointId: { pointId } })
+  }
+
+  const carToOrder = (car) => {
+    setOrder({ ...order, carId: car })
+  }
+
+  const nextTab = () => {
+    setCurrentTab(currentTab + 1)
+  }
+
+  useEffect(() => {
+    if (order.carId) {
+      const alt = completedLocations
+      alt[1].isCompleted = true
+      setCompletedLocations(alt)
+    } else {
+      const alt = completedLocations
+      alt[1].isCompleted = false
+      setCompletedLocations(alt)
+    }
+    if (order.cityId.cityId && order.pointId.pointId) {
+      const alt = completedLocations
+      alt[0].isCompleted = true
+      setCompletedLocations(alt)
+    } else {
+      const alt = completedLocations
+      alt[0].isCompleted = false
+      setCompletedLocations(alt)
+    }
+  }, [order])
+
+  useEffect(() => {
+    setIsCurrentTabCompleted(completedLocations[currentTab].isCompleted)
+  }, [order, currentTab])
 
   return (
     <div className="order-page">
@@ -18,11 +79,21 @@ const OrderPage = () => {
         <Header addClassname="order-page-padding" />
         <Breadcrumbs />
         <div className="order-page__tabs">
-          <LocationTab />
+          {currentTab === 0 && (
+            <LocationTab cityAndPointToOrder={cityAndPointToOrder} />
+          )}
+          {currentTab === 1 && <CarsTab carToOrder={carToOrder} />}
           <Bill
-            point="Ульяновск,
-Нариманова 42"
+            point={
+              order.pointId.pointId &&
+              order.cityId.cityId &&
+              `${order.cityId.cityId}, ${order.pointId.pointId}`
+            }
             price={[8000, 12000]}
+            tab={currentTab}
+            isCompleted={isCurrentTabCompleted}
+            nextTab={nextTab}
+            model={order.carId && order.carId.name}
           />
         </div>
       </div>
