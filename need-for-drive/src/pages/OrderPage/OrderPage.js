@@ -87,7 +87,7 @@ const OrderPage = () => {
               order.cityId.cityId &&
               `${order.cityId.cityId}, ${order.pointId.pointId}`
             }
-            price={[8000, 12000]}
+            price={order.carId && [order.carId.priceMin, order.carId.priceMax]}
             tab={currentTab}
             isCompleted={isCurrentTabCompleted}
             nextTab={nextTab}
