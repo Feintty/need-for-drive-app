@@ -1,90 +1,67 @@
 import React, { useState, useEffect } from "react"
 import PropTypes from "prop-types"
+import { fetchCars, fetchCategories } from "./CarsTabApi"
 import CarCard from "../CarCard/CarCard"
-import RadioButton from "../RadioButton/RadioButton"
 import "./CarsTab.scss"
 
 const CarsTab = ({ carToOrder }) => {
   const [currentError, setError] = useState()
   const [cars, setCars] = useState()
   const [currentFilterName, setCurrentFilterName] = useState("Все модели")
-
-  const fetchCars = () => {
-    fetch(`${process.env.REACT_APP_API_URL}/api/db/car`, {
-      method: "GET",
-      headers: {
-        "X-Api-Factory-Application-Id": process.env.REACT_APP_APPLICATION_ID,
-        Authorization: process.env.REACT_APP_AUTHORIZATION
-      }
-    })
-      .then((res) => res.json())
-      .then(
-        (result) => {
-          setCars(result.data)
-        },
-        (error) => {
-          setError(error)
-        }
-      )
-  }
+  const [categories, setCategories] = useState()
 
   useEffect(() => {
-    fetchCars()
+    fetchCars(setCars, setError)
+    fetchCategories(setCategories, setError)
   }, [])
 
   const filterCars = () => {
     if (currentFilterName === "Все модели") {
       return cars.filter((car) => {
-        if (car.categoryId) {
-          if (car.categoryId.name) {
-            return car
-          }
+        if (car.categoryId?.name) {
+          return car
         }
         return false
       })
     }
     return cars.filter((car) => {
-      if (car.categoryId) {
-        if (car.categoryId.name) {
-          if (car.categoryId.name === currentFilterName) {
-            return car
-          }
+      if (car.categoryId?.name) {
+        if (car.categoryId.name === currentFilterName) {
+          return car
         }
       }
       return false
     })
   }
 
-  const createRadios = () => {
-    const categories = [
-      "Все модели",
-      ...new Set(
-        cars
-          .filter((el) => {
-            if (el.categoryId) {
-              if (el.categoryId.name) {
-                return el.categoryId.name
-              }
-            }
-            return false
-          })
-          .map((el) => el.categoryId.name)
-      )
-    ]
+  const createRadios = () =>
+    ["Все модели", ...categories.map((el) => el.name)]
+      .filter((el) => el.length > 3 && !/[a-zA-Z]/.test(el))
+      .map((el, index) => (
+        <label className="radio-container" htmlFor>
+          <input
+            className="radio-input"
+            type="radio"
+            defaultChecked={index === 0}
+            name="contact"
+            value={el}
+          />
+          <span className="radio-text">{el}</span>
+        </label>
+      ))
 
-    return categories.map((el) => (
-      <RadioButton
-        active={currentFilterName}
-        onChecked={setCurrentFilterName}
-        description={el}
-      />
-    ))
+  const radioChanged = (e) => {
+    setCurrentFilterName(e.target.value)
   }
 
   if (!currentError && cars) {
     return (
       <div className="cars-tab">
-        <div className="cars-tab__radios">{createRadios()}</div>
+        <div
+          className="cars-tab__radios radio-container"
+          onChange={radioChanged}>
+          {createRadios()}
+        </div>
         <div className="cars-tab__table">
           {filterCars(cars).map((el) => (
             <CarCard

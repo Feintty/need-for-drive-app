@@ -1,6 +1,12 @@
 import React, { useEffect, useState } from "react"
 import "./LocationTab.scss"
 import PropTypes from "prop-types"
+import {
+  fetchCitiesLocation,
+  fetchPoints,
+  fetchPointsLocation,
+  fetchCities
+} from "./LocationTabApi"
 import Map from "../Map/Map"
 import TextInput from "../TextInput/TextInput"
 
@@ -11,7 +17,7 @@ const LocationTab = ({ cityAndPointToOrder }) => {
   const [currentPoint, setCurrentPoint] = useState("")
   const [citiesLocation, setCitiesLocation] = useState()
   const [pointsLocation, setPointsLocation] = useState()
-  const [focus, setFocus] = useState([60, 90])
+  const [focus, setFocus] = useState([55.751244, 37.618423])
   const [currentError, setError] = useState()
 
   const filterCities = () =>
@@ -28,53 +34,6 @@ const LocationTab = ({ cityAndPointToOrder }) => {
       }
       return false
     })
-
-  const fetchCitiesLocation = () => {
-    const cityNames = citiesList.map((el) => `&location=${el.name}`).join("")
-    fetch(
-      `http://mapquestapi.com/geocoding/v1/batch?key=${process.env.REACT_APP_MAPQUEST_KEY}${cityNames}`,
-      {
-        method: "GET"
-      }
-    )
-      .then((res) => res.json())
-      .then(
-        (result) => {
-          setCitiesLocation(result.results)
-        },
-        (error) => {
-          setError(error)
-        }
-      )
-  }
-
-  const fetchPointsLocation = () => {
-    const pointsAdress = citiesList
-      .map((el) => filterPointsByCityName(el.name))
-      .filter((el) => el.length !== 0)
-      .flat(1)
-      .reduce(
-        (finalString, el) =>
-          `${finalString}&location=${el.cityId.name},${el.address}`,
-        ""
-      )
-
-    fetch(
-      `http://mapquestapi.com/geocoding/v1/batch?key=${process.env.REACT_APP_MAPQUEST_KEY}${pointsAdress}`,
-      {
-        method: "GET"
-      }
-    )
-      .then((res) => res.json())
-      .then(
-        (result) => {
-          setPointsLocation(result.results)
-        },
-        (error) => {
-          setError(error)
-        }
-      )
-  }
 
   const getLocationByCity = (city) => {
     const location = citiesLocation
@@ -93,44 +52,6 @@ const LocationTab = ({ cityAndPointToOrder }) => {
     return [location.latLng.lat, location.latLng.lng]
   }
 
-  const fetchCities = () => {
-    fetch(`${process.env.REACT_APP_API_URL}/api/db/city`, {
-      method: "GET",
-      headers: {
-        "X-Api-Factory-Application-Id": process.env.REACT_APP_APPLICATION_ID,
-        Authorization: process.env.REACT_APP_AUTHORIZATION
-      }
-    })
-      .then((res) => res.json())
-      .then(
-        (result) => {
-          setCitiesList(result.data)
-        },
-        (error) => {
-          setError(error)
-        }
-      )
-  }
-
-  const fetchPoints = () => {
-    fetch(`${process.env.REACT_APP_API_URL}/api/db/point`, {
-      method: "GET",
-      headers: {
-        "X-Api-Factory-Application-Id": process.env.REACT_APP_APPLICATION_ID,
-        Authorization: process.env.REACT_APP_AUTHORIZATION
-      }
-    })
-      .then((res) => res.json())
-      .then(
-        (result) => {
-          setPointsList(result.data)
-        },
-        (error) => {
-          setError(error)
-        }
-      )
-  }
-
   const setCityAndPoint = (city = "", address = "") => {
     const findPoint = pointsList.find((el) => el.address === address).name
     setCurrentCity(city)
@@ -138,36 +59,34 @@ const LocationTab = ({ cityAndPointToOrder }) => {
   }
 
   useEffect(() => {
-    fetchCities()
-    fetchPoints()
+    fetchCities(setCitiesList, setError)
+    fetchPoints(setPointsList, setError)
   }, [])
 
   useEffect(() => {
     if (citiesList) {
-      fetchCitiesLocation()
+      fetchCitiesLocation(setCitiesLocation, setError, citiesList)
+      if (pointsList) {
+        fetchPointsLocation(
+          setPointsLocation,
+          setError,
+          citiesList,
+          filterPointsByCityName
+        )
+      }
     }
-  }, [citiesList])
-
-  useEffect(() => {
-    if (pointsList && citiesList) {
-      fetchPointsLocation()
-    }
-  }, [pointsList])
+  }, [citiesList, pointsList])
 
   useEffect(() => {
     if (currentPoint && pointsLocation) {
       setFocus(getLocationByPoint(currentPoint))
-    }
-  }, [currentPoint])
-
-  useEffect(() => {
-    if (currentCity && citiesLocation) {
+    } else if (currentCity && citiesLocation) {
       setFocus(getLocationByCity(currentCity))
     }
-  }, [currentCity])
-
-  useEffect(() => {
-    cityAndPointToOrder(currentCity, currentPoint)
+    if (pointsList && currentPoint) {
+      const adressOfPoint = pointsList.find((el) => el.name === currentPoint)
+      cityAndPointToOrder(currentCity, adressOfPoint.address)
+    }
   }, [currentCity, currentPoint])
 
   if (
@@ -202,7 +121,7 @@ const LocationTab = ({ cityAndPointToOrder }) => {
           <Map
             focus={focus}
             setCityAndPoint={setCityAndPoint}
-            zoom={10}
+            zoom={currentPoint ? 25 : 10}
             markers={pointsLocation}
           />
         </div>

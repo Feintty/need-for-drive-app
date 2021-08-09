@@ -52,14 +52,22 @@ const Bill = ({
         {createBillElement("Правый руль:", rightHand)}
       </div>
       <div className="bill__price">Цена: {createPrice()}</div>
-      <button
-        type="button"
-        onClick={nextTab}
-        className={`bill__button ${
-          isCompleted ? classes[tab] : "button-disabled"
-        }`}>
-        {content[tab]}
-      </button>
+      {isCompleted ? (
+        <button
+          type="button"
+          onClick={nextTab}
+          className={`bill__button ${classes[tab]}`}>
+          {content[tab]}
+        </button>
+      ) : (
+        <button
+          type="button"
+          onClick={nextTab}
+          disabled
+          className="bill__button button-disabled">
+          {content[tab]}
+        </button>
+      )}
     </div>
   )
 }

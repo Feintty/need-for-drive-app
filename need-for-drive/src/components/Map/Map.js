@@ -4,9 +4,10 @@ import PropTypes from "prop-types"
 import { TileLayer, MapContainer, Marker, useMap } from "react-leaflet"
 import MapMarker from "./MapMarker"
 
-function FocusChange({ position }) {
+function FocusChange({ position, zoom }) {
   const map = useMap()
   map.setView(position)
+  map.setZoom(zoom)
   return null
 }
 
@@ -52,7 +53,7 @@ const Map = ({ focus, zoom, markers, setCityAndPoint }) => {
         url={`https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png?api_key=${process.env.REACT_APP_LEAFLET_KEY}`}
       />
       {createMarkers().map((el) => el)}
-      <FocusChange position={focus} />
+      <FocusChange position={focus} zoom={zoom} />
     </MapContainer>
   )
 }
