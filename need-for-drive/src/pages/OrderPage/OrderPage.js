@@ -75,7 +75,12 @@ const OrderPage = () => {
       <BurgerNav isHiding={swapBurger} />
       <div className="order-page__content">
         <Header addClassname="order-page-padding" />
-        <Breadcrumbs />
+        <Breadcrumbs
+          completedSteps={
+            completedLocations.filter((el) => el.isCompleted === true).length
+          }
+          currentStep={currentTab}
+        />
         <div className="order-page__tabs">
           {currentTab === 0 && (
             <LocationTab cityAndPointToOrder={cityAndPointToOrder} />
