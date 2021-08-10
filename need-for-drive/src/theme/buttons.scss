@@ -61,6 +61,7 @@ button:hover {
   color: $color-main-light;
   background: $color-disabled;
   border-radius: 8px;
+  cursor: not-allowed;
 }
 
 .button-round {

@@ -3,6 +3,7 @@
     display: flex;
     flex-direction: row;
     height: 100vh;
+    overflow:none;
   }
 
   .order-page__content{
@@ -12,12 +13,12 @@
   }
   
   .order-page-padding{
-    padding: $size-mid $size-large;
+    padding: $size-mid-locked $size-large-locked;
   }
 
   .order-page__tabs{
     padding: 0 $size-large;
-    height: 100%;
+    height: calc(100% - 128px);
   }
 
 @media only screen and (min-width: 0px) and
