@@ -1,0 +1,41 @@
+@import "../../theme/local.scss";
+.car-card {
+  width: 369px;
+  height: 224px;
+  padding: 17px;
+  border:1px solid $color-second;
+  margin:-0.5px;
+  cursor: pointer;
+
+  .car-card__image{
+      height: 116px;
+      float: right;
+      pointer-events: none;
+  }
+
+  .car-card__info{
+      margin-bottom: 36px;
+  }
+
+  .car-card__name{
+    font-size: 18px;
+    line-height: 21px;
+  }
+
+  .car-card__price{
+    font-size: 14px;
+    line-height: 16px;
+    font-weight: 400;
+    color: $color-second;
+  }
+  &:hover{
+    border:1px solid $color-accent;
+    z-index: 1;
+  }
+  &:focus{
+    border:1px solid $color-accent;
+    z-index: 1;
+    background: rgba(14, 194, 97,0.1);
+  }
+}
+

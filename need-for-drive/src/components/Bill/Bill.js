@@ -1,6 +1,7 @@
 import React from "react"
 import PropTypes from "prop-types"
 import "./Bill.scss"
+import { classes, content } from "./BillButtons"
 
 const Bill = ({
   point,
@@ -11,7 +12,10 @@ const Bill = ({
   fullTank,
   babyChair,
   rightHand,
-  price
+  price,
+  tab,
+  isCompleted,
+  nextTab
 }) => {
   const createBillElement = (elementName, option) => {
     if (!option) {
@@ -48,9 +52,22 @@ const Bill = ({
         {createBillElement("Правый руль:", rightHand)}
       </div>
       <div className="bill__price">Цена: {createPrice()}</div>
-      <button type="button" className="bill__button button-disabled">
-        Выбрать модель
-      </button>
+      {isCompleted ? (
+        <button
+          type="button"
+          onClick={nextTab}
+          className={`bill__button ${classes[tab]}`}>
+          {content[tab]}
+        </button>
+      ) : (
+        <button
+          type="button"
+          onClick={nextTab}
+          disabled
+          className="bill__button button-disabled">
+          {content[tab]}
+        </button>
+      )}
     </div>
   )
 }
@@ -64,7 +81,10 @@ Bill.propTypes = {
   fullTank: PropTypes.string,
   babyChair: PropTypes.string,
   rightHand: PropTypes.string,
-  price: PropTypes.arrayOf([PropTypes.number, PropTypes.number])
+  price: PropTypes.arrayOf([PropTypes.number, PropTypes.number]),
+  tab: PropTypes.number,
+  isCompleted: PropTypes.bool,
+  nextTab: PropTypes.func
 }
 
 export default Bill

@@ -1,0 +1,42 @@
+@import "./colors.scss";
+.radio-container {
+  @mixin radio-round {
+    content: " ";
+    position: absolute;
+    left: 0px;
+    bottom: 4px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+  }
+
+  .radio-input[type="radio"] {
+    display: none;
+  }
+
+  .radio-input[type="radio"] + .radio-text {
+    color: $color-second;
+  }
+
+  .radio-input[type="radio"]:checked + .radio-text {
+    color: $color-main;
+  }
+
+  & .radio-text {
+    position: relative;
+    padding-left: 20px;
+  }
+
+  & .radio-text::before {
+    @include radio-round;
+    border: 1px solid $color-second;
+  }
+
+  .radio-input[type="radio"]:checked + .radio-text:after {
+    @include radio-round;
+    border: 3px solid $color-accent;
+    .radio-container .radio-text::before {
+      display: none;
+    }
+  }
+}
