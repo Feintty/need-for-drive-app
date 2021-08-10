@@ -34,7 +34,6 @@ const LocationTab = ({ cityAndPointToOrder }) => {
       }
       return false
     })
-
   const getLocationByCity = (city) => {
     const location = citiesLocation
       .find((el) => el.providedLocation.location === city)
@@ -43,8 +42,9 @@ const LocationTab = ({ cityAndPointToOrder }) => {
   }
 
   const getLocationByPoint = (point) => {
+    console.log(point)
     const address = `${currentCity},${
-      pointsList.find((el) => el.name === point).address
+      pointsList.find((el) => el.address === point).address
     }`
     const location = pointsLocation
       .find((el) => el.providedLocation.location === address)
@@ -53,7 +53,8 @@ const LocationTab = ({ cityAndPointToOrder }) => {
   }
 
   const setCityAndPoint = (city = "", address = "") => {
-    const findPoint = pointsList.find((el) => el.address === address).name
+    console.log(city, address)
+    const findPoint = pointsList.find((el) => el.address === address).address
     setCurrentCity(city)
     setCurrentPoint(findPoint)
   }
@@ -78,16 +79,19 @@ const LocationTab = ({ cityAndPointToOrder }) => {
   }, [citiesList, pointsList])
 
   useEffect(() => {
-    if (currentPoint && pointsLocation) {
-      setFocus(getLocationByPoint(currentPoint))
-    } else if (currentCity && citiesLocation) {
+    if (currentCity && citiesLocation) {
       setFocus(getLocationByCity(currentCity))
     }
     if (pointsList && currentPoint) {
-      const adressOfPoint = pointsList.find((el) => el.name === currentPoint)
-      cityAndPointToOrder(currentCity, adressOfPoint.address)
+      cityAndPointToOrder(currentCity, currentPoint)
     }
   }, [currentCity, currentPoint])
+
+  useEffect(() => {
+    if (currentPoint && pointsLocation) {
+      setFocus(getLocationByPoint(currentPoint))
+    }
+  }, [currentPoint])
 
   if (
     citiesList &&
@@ -103,7 +107,11 @@ const LocationTab = ({ cityAndPointToOrder }) => {
             text={currentCity}
             description="Город"
             placeholder="Начните вводить город ..."
-            datalistItems={citiesList ? filterCities(citiesList) : citiesList}
+            datalistItems={
+              citiesList
+                ? filterCities(citiesList).map((el) => el.name)
+                : citiesList.map((el) => el.name)
+            }
             setDataElement={setCurrentCity}
           />
           <TextInput
@@ -111,7 +119,9 @@ const LocationTab = ({ cityAndPointToOrder }) => {
             description="Пункт выдачи"
             placeholder="Начните вводить пункт ..."
             datalistItems={
-              currentCity ? filterPointsByCityName(currentCity) : pointsList
+              currentCity
+                ? filterPointsByCityName(currentCity).map((el) => el.address)
+                : pointsList.map((el) => el.address)
             }
             setDataElement={setCurrentPoint}
           />

@@ -50,7 +50,7 @@ const TextInput = ({
     if (!!datalistItems && inputText !== "") {
       setFilteredData(
         datalistItems.filter((item) =>
-          RegExp(`^${inputText.toLowerCase()}`).test(item.name.toLowerCase())
+          RegExp(`^${inputText.toLowerCase()}`).test(item.toLowerCase())
         )
       )
     } else if (datalistItems) {
@@ -92,7 +92,7 @@ const TextInput = ({
               className="text-input__data-element"
               onMouseDown={onItemClick}
               role="none">
-              {item.name}
+              {item}
             </span>
           ))}
       </div>
