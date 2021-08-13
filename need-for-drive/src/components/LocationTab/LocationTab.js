@@ -10,7 +10,7 @@ import {
 import Map from "../Map/Map"
 import TextInput from "../TextInput/TextInput"
 
-const LocationTab = ({ cityAndPointToOrder }) => {
+const LocationTab = ({ returnData, isActive }) => {
   const [citiesList, setCitiesList] = useState()
   const [pointsList, setPointsList] = useState()
   const [currentCity, setCurrentCity] = useState("")
@@ -27,8 +27,10 @@ const LocationTab = ({ cityAndPointToOrder }) => {
     pointsList.filter((point) => {
       if (Object.prototype.hasOwnProperty.call(point, "cityId")) {
         if (point.cityId !== null) {
-          if (point.cityId.name === city) {
-            return point
+          if (!/[0-9]|Город/.test(point.cityId.name)) {
+            if (point.cityId.name === city) {
+              return point
+            }
           }
         }
       }
@@ -42,7 +44,6 @@ const LocationTab = ({ cityAndPointToOrder }) => {
   }
 
   const getLocationByPoint = (point) => {
-    console.log(point)
     const address = `${currentCity},${
       pointsList.find((el) => el.address === point).address
     }`
@@ -53,7 +54,6 @@ const LocationTab = ({ cityAndPointToOrder }) => {
   }
 
   const setCityAndPoint = (city = "", address = "") => {
-    console.log(city, address)
     const findPoint = pointsList.find((el) => el.address === address).address
     setCurrentCity(city)
     setCurrentPoint(findPoint)
@@ -83,7 +83,11 @@ const LocationTab = ({ cityAndPointToOrder }) => {
       setFocus(getLocationByCity(currentCity))
     }
     if (pointsList && currentPoint) {
-      cityAndPointToOrder(currentCity, currentPoint)
+      const cityData = citiesList.find((city) => city.name === currentCity)
+      const pointData = pointsList.find(
+        (point) => point.address === currentPoint
+      )
+      returnData({ city: cityData, point: pointData })
     }
   }, [currentCity, currentPoint])
 
@@ -92,6 +96,10 @@ const LocationTab = ({ cityAndPointToOrder }) => {
       setFocus(getLocationByPoint(currentPoint))
     }
   }, [currentPoint])
+
+  if (!isActive) {
+    return null
+  }
 
   if (
     citiesList &&
@@ -145,7 +153,8 @@ const LocationTab = ({ cityAndPointToOrder }) => {
 }
 
 LocationTab.propTypes = {
-  cityAndPointToOrder: PropTypes.func
+  returnData: PropTypes.func,
+  isActive: PropTypes.bool
 }
 
 export default LocationTab

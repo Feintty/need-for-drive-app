@@ -39,7 +39,6 @@ export const fetchPoints = (correct, err) => {
 
 export const fetchCitiesLocation = (correct, err, citiesList) => {
   const cityNames = citiesList.map((el) => `&location=${el.name}`).join("")
-  console.log(cityNames)
   fetch(
     `${process.env.REACT_APP_MAPQUEST_BATCH_URL}${process.env.REACT_APP_MAPQUEST_KEY}${cityNames}`,
     {
@@ -73,7 +72,6 @@ export const fetchPointsLocation = (
       ""
     )
 
-    console.log(pointsAdress)
   fetch(
     `${process.env.REACT_APP_MAPQUEST_BATCH_URL}${process.env.REACT_APP_MAPQUEST_KEY}${pointsAdress}`,
     {

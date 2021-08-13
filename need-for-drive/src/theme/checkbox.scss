@@ -1,0 +1,50 @@
+@import "./colors.scss";
+.checkbox-container {
+  @mixin checkbox-round {
+    content: " ";
+    position: absolute;
+    left: 0px;
+    bottom: 3px;
+    width: 12px;
+    height: 12px;
+  }
+
+  .checkbox-input[type="checkbox"] {
+    display: none;
+  }
+
+  .checkbox-input[type="checkbox"] + .checkbox-text {
+    color: $color-second;
+  }
+
+  .checkbox-input[type="checkbox"]:checked + .checkbox-text {
+    color: $color-main;
+  }
+
+  & .checkbox-text {
+    position: relative;
+    padding-left: 20px;
+    user-select: none;
+  }
+
+  & .checkbox-text::before {
+    @include checkbox-round;
+    border: 1px solid $color-second;
+  }
+
+  .checkbox-input[type="checkbox"]:checked + .checkbox-text::before {
+    border: 1px solid $color-accent;
+  }
+
+  .checkbox-input[type="checkbox"]:checked + .checkbox-text::after {
+      left:5px;
+      bottom: 6px;
+    content: " ";
+    position: absolute;
+    transform: rotate(45deg);
+    height: 13px;
+    width: 8px;
+    border-bottom: 3px solid $color-main;
+    border-right: 3px solid $color-main;
+  }
+}

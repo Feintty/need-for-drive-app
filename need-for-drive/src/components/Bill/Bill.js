@@ -17,7 +17,7 @@ const Bill = ({
   isCompleted,
   nextTab
 }) => {
-  const createBillElement = (elementName, option) => {
+  const createBillElement = (elementName, option, isBool = false) => {
     if (!option) {
       return null
     }
@@ -25,7 +25,7 @@ const Bill = ({
       <div className="bill__element">
         <span className="bill__dots" />
         <span className="bill__element-name">{elementName}</span>
-        <span className="bill__option">{option}</span>
+        <span className="bill__option">{isBool ? "Да" : option}</span>
       </div>
     )
   }
@@ -47,9 +47,9 @@ const Bill = ({
         {createBillElement("Цвет", color)}
         {createBillElement("Длительность аренды:", time)}
         {createBillElement("Тариф:", tariff)}
-        {createBillElement("Полный бак:", fullTank)}
-        {createBillElement("Детское кресло:", babyChair)}
-        {createBillElement("Правый руль:", rightHand)}
+        {createBillElement("Полный бак:", fullTank, true)}
+        {createBillElement("Детское кресло:", babyChair, true)}
+        {createBillElement("Правый руль:", rightHand, true)}
       </div>
       <div className="bill__price">Цена: {createPrice()}</div>
       {isCompleted ? (

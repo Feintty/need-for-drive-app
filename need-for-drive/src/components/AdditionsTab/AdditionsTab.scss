@@ -1,0 +1,52 @@
+@import "../../theme/local.scss";
+
+.additions-tab {
+  padding-top: $size-mid-locked;
+  * {
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 16px;
+  }
+  .additions-tab__description{
+    margin-bottom: $size-small-locked;
+  }
+
+  .additions-tab__colors-container {
+    @include flex-column;
+    justify-content: space-between;
+
+    .radio-container {
+      margin-right: $size-small-locked;
+    }
+  }
+  .additions-tab__colors-container,
+  .additions-tab__date-container,
+  .additions-tab__tariff-container,
+  .additions-tab__adds-container {
+    margin-bottom: $size-mid-locked;
+  }
+  .additions-tab__tariff-container {
+    .additions-tab__tariff {
+      @include flex-column;
+    }
+    .radio-container {
+      margin-bottom: 8px;
+    }
+  }
+
+  .additions-tab__adds-container{
+    .additions-tab__adds{
+      @include flex-column;
+    }
+
+    .checkbox-container{
+      margin-bottom: 8px;
+    }
+  }
+
+  .additions-tab__date{
+    @include flex-column;
+    justify-content: space-between;
+    height: 51px;
+  }
+}

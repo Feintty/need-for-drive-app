@@ -1,0 +1,28 @@
+@import "../../theme/local.scss";
+.data-time {
+  @include flex-row;
+  position: relative;
+  .data-time__description {
+    margin-right: 8px;
+    margin-top: 3px;
+  }
+
+  
+  .react-datepicker-wrapper .react-datepicker__input-container input,  .react-datepicker-wrapper .react-datepicker__input-container input:focus {
+    height: 20px;
+    width: 224px;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid $color-second;
+    padding: 3px 10px;
+  }
+
+  .data-time__close {
+    filter: brightness(0);
+    width: 12px;
+    margin-left: -14px;
+    margin-bottom: 2px;
+    cursor: pointer;
+    z-index: 0;
+  }
+}

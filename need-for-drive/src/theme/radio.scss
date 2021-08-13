@@ -25,6 +25,7 @@
   & .radio-text {
     position: relative;
     padding-left: 20px;
+    user-select: none;
   }
 
   & .radio-text::before {
