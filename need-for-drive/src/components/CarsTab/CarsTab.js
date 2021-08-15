@@ -77,6 +77,7 @@ const CarsTab = ({ returnData, isActive, isCanReset, isCanResetChange }) => {
           {filterCars(cars).map((el) => (
             <CarCard
               id={el.id}
+              key={el.id}
               setSelectedCar={setSelectedCar}
               selectedCar={selectedCar}
               carData={el}

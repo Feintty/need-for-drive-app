@@ -2,7 +2,7 @@
 .data-time {
   @include flex-row;
   position: relative;
-  .data-time__description {
+  &__description {
     margin-right: 8px;
     margin-top: 3px;
   }
@@ -17,7 +17,7 @@
     padding: 3px 10px;
   }
 
-  .data-time__close {
+  &__close {
     filter: brightness(0);
     width: 12px;
     margin-left: -14px;

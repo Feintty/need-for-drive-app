@@ -2,7 +2,11 @@ import React, { useState, useEffect } from "react"
 import PropTypes from "prop-types"
 import fetchTariffs from "./AdditionsTabApi"
 import "./AdditionsTab.scss"
-import DateTimePicker from "../DateTimePicker/DateTimePicker"
+import adds from "./AdditionsTabData"
+import DateTimeInterval from "../DateTimeInterval/DateTimeInterval"
+import AdditionsTabTariffRadios from "./AdditionsTabTariffRadios"
+import AdditionsTabColorRadios from "./AdditionsTabColorRadios"
+import AdditionsTabCheckboxes from "./AdditionsTabCheckboxes"
 
 const AdditionsTab = ({
   isActive,
@@ -21,12 +25,6 @@ const AdditionsTab = ({
   const [firstDate, setFirstDate] = useState(null)
   const [secondDate, setSecondDate] = useState(null)
   const [error, setError] = useState()
-
-  const adds = [
-    "Полный бак, 500₽",
-    "Детское кресло, 200₽",
-    "Правый руль, 1600₽"
-  ]
   const isDataLoaded = !!tariffs
 
   useEffect(() => {
@@ -74,110 +72,6 @@ const AdditionsTab = ({
     fetchTariffs(setTariffs, setError)
   }, [])
 
-  const radioOnChange = (e) => {
-    if (e.target.name === "colors") {
-      setCurrentColor(e.target.value)
-    }
-    if (e.target.name === "tariffs") {
-      setCurrentTariff(
-        tariffs.find((tariff) => tariff.rateTypeId.name === e.target.value)
-      )
-    }
-  }
-
-  const checkboxOnChange = (e) => {
-    if (e.target.value === adds[0]) {
-      setIsFullTank(!isFullTank)
-    } else if (e.target.value === adds[1]) {
-      setIsBabyChair(!isBabyChair)
-    } else if (e.target.value === adds[2]) {
-      setIsRighthand(!isRighthand)
-    }
-  }
-
-  const defaultCheckbox = (value) => {
-    if (value === adds[0] && isFullTank) {
-      return true
-    }
-    if (value === adds[1] && isBabyChair) {
-      return true
-    }
-    if (value === adds[2] && isRighthand) {
-      return true
-    }
-    return false
-  }
-
-  const createAddsCheckboxes = () =>
-    adds.map((add) => (
-      <label className="checkbox-container" htmlFor onChange={checkboxOnChange}>
-        <input
-          className="checkbox-input"
-          type="checkbox"
-          name="adds"
-          value={add}
-          checked={defaultCheckbox(add)}
-        />
-        <span className="checkbox-text">{add}</span>
-      </label>
-    ))
-
-  const createColorRadios = () =>
-    ["Любой", ...carColors].map((color) => (
-      <label className="radio-container" onChange={radioOnChange} htmlFor>
-        <input
-          className="radio-input"
-          type="radio"
-          name="colors"
-          value={color}
-          checked={color === currentColor}
-        />
-        <span className="radio-text">{color}</span>
-      </label>
-    ))
-
-  const createTariffRadios = () =>
-    tariffs.map((tariff) => {
-      if (
-        (time?.days || time?.hours) &&
-        ((tariff.rateTypeId.unit === "сутки" && time.days > 0) ||
-          (tariff.rateTypeId.unit === "7 дней" && time.days >= 7) ||
-          (tariff.rateTypeId.unit === "30 дней" && time.days >= 30) ||
-          tariff.rateTypeId.unit === "мин")
-      ) {
-        return (
-          <label className="radio-container" onChange={radioOnChange} htmlFor>
-            <input
-              className="radio-input"
-              type="radio"
-              name="tariffs"
-              checked={
-                currentTariff &&
-                currentTariff.rateTypeId.name === tariff.rateTypeId.name
-              }
-              value={tariff.rateTypeId.name}
-            />
-            <span className="radio-text">{`${tariff.rateTypeId.name}, ${tariff.price}₽ / ${tariff.rateTypeId.unit}`}</span>
-          </label>
-        )
-      }
-
-      return (
-        <label className="radio-container" onChange={radioOnChange} htmlFor>
-          <input
-            className="radio-input"
-            type="radio"
-            name="tariffs"
-            disabled
-            checked={false}
-          />
-          <span className="radio-text">
-            <s>{tariff.rateTypeId.name}</s>
-          </span>
-        </label>
-      )
-    })
-
   if (!isActive) {
     return null
   }
@@ -186,26 +80,49 @@ const AdditionsTab = ({
       <div className="additions-tab">
         <div className="additions-tab__colors-container">
           <h3 className="additions-tab__description">Цвет</h3>
-          <div className="additions-tab__colors">{createColorRadios()}</div>
+          <div className="additions-tab__colors">
+            <AdditionsTabColorRadios
+              carColors={carColors}
+              currentColor={currentColor}
+              setCurrentColor={setCurrentColor}
+            />
+          </div>
         </div>
         <div className="additions-tab__date-container">
           <h3 className="additions-tab__description">Дата аренды</h3>
           <div className="additions-tab__date">
-            <DateTimePicker value={firstDate} setValue={setFirstDate} />
-            <DateTimePicker
-              value={secondDate}
-              setValue={setSecondDate}
-              minDate={firstDate && firstDate}
+            <DateTimeInterval
+              valueFirst={firstDate}
+              valueSecond={secondDate}
+              setValueFirst={setFirstDate}
+              setValueSecond={setSecondDate}
             />
           </div>
         </div>
         <div className="additions-tab__tariff-container">
           <h3 className="additions-tab__description">Тариф</h3>
-          <div className="additions-tab__tariff">{createTariffRadios()}</div>
+          <div className="additions-tab__tariff">
+            <AdditionsTabTariffRadios
+              tariffs={tariffs}
+              time={time}
+              currentTariff={currentTariff}
+              setCurrentTariff={setCurrentTariff}
+            />
+          </div>
         </div>
         <div className="additions-tab__adds-container">
           <h3 className="additions-tab__description">Доп услуги</h3>
-          <div className="additions-tab__adds">{createAddsCheckboxes()}</div>
+          <div className="additions-tab__adds">
+            <AdditionsTabCheckboxes
+              adds={adds}
+              setIsFullTank={setIsFullTank}
+              isFullTank={isFullTank}
+              setIsBabyChair={setIsBabyChair}
+              isBabyChair={isBabyChair}
+              setIsRighthand={setIsRighthand}
+              isRighthand={isRighthand}
+            />
+          </div>
         </div>
       </div>
     )

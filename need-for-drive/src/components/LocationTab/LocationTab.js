@@ -17,17 +17,18 @@ const LocationTab = ({ returnData, isActive }) => {
   const [currentPoint, setCurrentPoint] = useState("")
   const [citiesLocation, setCitiesLocation] = useState()
   const [pointsLocation, setPointsLocation] = useState()
-  const [focus, setFocus] = useState([55.751244, 37.618423])
+  const [focus, setFocus] = useState([54.3107593, 48.3642771])
   const [currentError, setError] = useState()
 
   const filterCities = () =>
     citiesList.filter((city) => /^[а-яА-Я]*$/.test(city.name))
 
-  const filterPointsByCityName = (city) =>
-    pointsList.filter((point) => {
+  const filterPointsByCityName = (city) => {
+    const filterReg = new RegExp(/[0-9]|Город/)
+    return pointsList.filter((point) => {
       if (Object.prototype.hasOwnProperty.call(point, "cityId")) {
         if (point.cityId !== null) {
-          if (!/[0-9]|Город/.test(point.cityId.name)) {
+          if (!filterReg.test(point.cityId.name)) {
             if (point.cityId.name === city) {
               return point
             }
@@ -36,6 +37,7 @@ const LocationTab = ({ returnData, isActive }) => {
       }
       return false
     })
+  }
   const getLocationByCity = (city) => {
     const location = citiesLocation
       .find((el) => el.providedLocation.location === city)
