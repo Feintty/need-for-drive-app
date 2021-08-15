@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/need-for-drive-app/static/css/main.3b376719.chunk.css",
-    "main.js": "/need-for-drive-app/static/js/main.f5df0c87.chunk.js",
-    "main.js.map": "/need-for-drive-app/static/js/main.f5df0c87.chunk.js.map",
+    "main.css": "/need-for-drive-app/static/css/main.92f6fcd9.chunk.css",
+    "main.js": "/need-for-drive-app/static/js/main.972405b0.chunk.js",
+    "main.js.map": "/need-for-drive-app/static/js/main.972405b0.chunk.js.map",
     "runtime-main.js": "/need-for-drive-app/static/js/runtime-main.ed0bdef9.js",
     "runtime-main.js.map": "/need-for-drive-app/static/js/runtime-main.ed0bdef9.js.map",
     "static/css/2.ecdd39c8.chunk.css": "/need-for-drive-app/static/css/2.ecdd39c8.chunk.css",
-    "static/js/2.28d7c21b.chunk.js": "/need-for-drive-app/static/js/2.28d7c21b.chunk.js",
-    "static/js/2.28d7c21b.chunk.js.map": "/need-for-drive-app/static/js/2.28d7c21b.chunk.js.map",
+    "static/js/2.a49112e4.chunk.js": "/need-for-drive-app/static/js/2.a49112e4.chunk.js",
+    "static/js/2.a49112e4.chunk.js.map": "/need-for-drive-app/static/js/2.a49112e4.chunk.js.map",
     "index.html": "/need-for-drive-app/index.html",
     "static/css/2.ecdd39c8.chunk.css.map": "/need-for-drive-app/static/css/2.ecdd39c8.chunk.css.map",
-    "static/css/main.3b376719.chunk.css.map": "/need-for-drive-app/static/css/main.3b376719.chunk.css.map",
-    "static/js/2.28d7c21b.chunk.js.LICENSE.txt": "/need-for-drive-app/static/js/2.28d7c21b.chunk.js.LICENSE.txt",
+    "static/css/main.92f6fcd9.chunk.css.map": "/need-for-drive-app/static/css/main.92f6fcd9.chunk.css.map",
+    "static/js/2.a49112e4.chunk.js.LICENSE.txt": "/need-for-drive-app/static/js/2.a49112e4.chunk.js.LICENSE.txt",
     "static/media/global.scss": "/need-for-drive-app/static/media/RobotoMono-Light.835ca7f9.ttf",
     "static/media/arrow-breadcrumbs.3f54b55d.svg": "/need-for-drive-app/static/media/arrow-breadcrumbs.3f54b55d.svg",
     "static/media/arrow-left.1752ae91.svg": "/need-for-drive-app/static/media/arrow-left.1752ae91.svg",
@@ -31,8 +31,8 @@
   "entrypoints": [
     "static/js/runtime-main.ed0bdef9.js",
     "static/css/2.ecdd39c8.chunk.css",
-    "static/js/2.28d7c21b.chunk.js",
-    "static/css/main.3b376719.chunk.css",
-    "static/js/main.f5df0c87.chunk.js"
+    "static/js/2.a49112e4.chunk.js",
+    "static/css/main.92f6fcd9.chunk.css",
+    "static/js/main.972405b0.chunk.js"
   ]
 }
