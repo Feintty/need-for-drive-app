@@ -5,7 +5,7 @@ import "react-datepicker/dist/react-datepicker.css"
 import "./DateTimePicker.scss"
 import Close from "../../assets/icons/close.svg"
 
-const DateTimePicker = ({ value, setValue, minDate }) => {
+const DateTimePicker = ({ value, setValue, minDate,maxDate }) => {
   const [focused, setFocused] = useState(false)
   return (
     <div className="data-time">
@@ -22,6 +22,7 @@ const DateTimePicker = ({ value, setValue, minDate }) => {
         clearButtonClassName="disabled"
         dateFormat="dd.MM.yyyy h:mm"
         minDate={minDate || new Date()}
+        maxDate={maxDate && maxDate}
       />
       <img
         className={`data-time__close${focused ? "" : " disabled"}`}
@@ -40,7 +41,8 @@ const DateTimePicker = ({ value, setValue, minDate }) => {
 DateTimePicker.propTypes = {
   value: PropTypes.objectOf,
   setValue: PropTypes.func,
-  minDate: PropTypes.func
+  minDate: PropTypes.func,
+  maxDate: PropTypes.func
 }
 
 export default DateTimePicker

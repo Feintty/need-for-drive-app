@@ -11,21 +11,23 @@ const AdditionsTabColorRadios = ({
       setCurrentColor(e.target.value)
     }
   }
-  const createColorRadios = () =>
-    ["Любой", ...carColors].map((color) => (
-      <label className="radio-container" onChange={radioOnChange} htmlFor>
-        <input
-          className="radio-input"
-          type="radio"
-          name="colors"
-          value={color}
-          checked={color === currentColor}
-        />
-        <span className="radio-text">{color}</span>
-      </label>
-    ))
 
-  return <>{createColorRadios()}</>
+  return (
+    <>
+      {["Любой", ...carColors].map((color) => (
+        <label className="radio-container" onChange={radioOnChange} htmlFor>
+          <input
+            className="radio-input"
+            type="radio"
+            name="colors"
+            value={color}
+            checked={color === currentColor}
+          />
+          <span className="radio-text">{color}</span>
+        </label>
+      ))}
+    </>
+  )
 }
 
 AdditionsTabColorRadios.propTypes = {

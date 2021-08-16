@@ -20,7 +20,7 @@ const AdditionsTabCheckboxes = ({
     }
   }
 
-  const defaultCheckbox = (value) => {
+  const isDefaultCheckbox = (value) => {
     if (value === adds[0] && isFullTank) {
       return true
     }
@@ -33,21 +33,25 @@ const AdditionsTabCheckboxes = ({
     return false
   }
 
-  const createAddsCheckboxes = () =>
-    adds.map((add) => (
-      <label className="checkbox-container" htmlFor onChange={checkboxOnChange}>
-        <input
-          className="checkbox-input"
-          type="checkbox"
-          name="adds"
-          value={add}
-          checked={defaultCheckbox(add)}
-        />
-        <span className="checkbox-text">{add}</span>
-      </label>
-    ))
-
-  return <>{createAddsCheckboxes()}</>
+  return (
+    <>
+      {adds.map((add) => (
+        <label
+          className="checkbox-container"
+          htmlFor
+          onChange={checkboxOnChange}>
+          <input
+            className="checkbox-input"
+            type="checkbox"
+            name="adds"
+            value={add}
+            checked={isDefaultCheckbox(add)}
+          />
+          <span className="checkbox-text">{add}</span>
+        </label>
+      ))}
+    </>
+  )
 }
 
 AdditionsTabCheckboxes.propTypes = {

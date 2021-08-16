@@ -9,11 +9,15 @@ const DateTimeInterval = ({
   setValueSecond
 }) => (
   <>
-    <DateTimePicker value={valueFirst} setValue={setValueFirst} />
+    <DateTimePicker
+      value={valueFirst}
+      setValue={setValueFirst}
+      maxDate={valueSecond && valueSecond}
+    />
     <DateTimePicker
       value={valueSecond}
       setValue={setValueSecond}
-      minDate={setValueFirst && valueSecond}
+      minDate={setValueFirst && valueFirst}
     />
   </>
 )
