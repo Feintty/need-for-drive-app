@@ -47,14 +47,21 @@ const OrderPageBill = ({
   }
 
   useEffect(() => {
-    if (additionsData.startDate && additionsData.endDate) {
+    if (
+      additionsData.startDate &&
+      additionsData.endDate &&
+      additionsData.startDate.toString() !== additionsData.endDate.toString()
+    ) {
       const start = moment(additionsData.startDate, "DD-MM-YYYY HH:mm")
       const end = moment(additionsData.endDate, "DD-MM-YYYY HH:mm")
       const diff = end.diff(start, "minutes")
 
       const numdays = Math.floor(diff / 1440)
       const numhours = Math.floor((diff % 1440) / 60)
-      return diff > 0 && setTime({ days: numdays, hours: numhours })
+      return (
+        (numdays > 0 || numhours > 0) &&
+        setTime({ days: numdays, hours: numhours })
+      )
     }
     setTime()
 
@@ -78,6 +85,8 @@ const OrderPageBill = ({
       setIsPriceCorrect(false)
     }
   }, [price, additionsData])
+
+  console.log(time)
 
   return (
     <Bill
