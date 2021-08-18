@@ -60,10 +60,6 @@
     font-weight: 300;
   }
 
-  .bill__element {
-    max-width: 277px;
-  }
-
   .bill__element:not(:last-child) {
     margin-bottom: $size-small-locked;
   }
