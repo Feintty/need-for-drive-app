@@ -2,12 +2,25 @@ import React from "react"
 import PropTypes from "prop-types"
 import "./CarCard.scss"
 
-const CarCard = ({ name, priceMin, priceMax, image, carClick, carData }) => (
+const CarCard = ({
+  name,
+  priceMin,
+  priceMax,
+  image,
+  carClick,
+  carData,
+  selectedCar,
+  setSelectedCar,
+  id
+}) => (
   <div
-    className="car-card"
+    className={`car-card${selectedCar === id ? " selected" : ""}`}
     onKeyDown
     role="button"
-    onClick={() => carClick(carData)}
+    onClick={() => {
+      carClick(carData)
+      setSelectedCar(id)
+    }}
     tabIndex="0">
     <div className="car-card__info">
       <h2 className="car-card__name">{name}</h2>
@@ -33,6 +46,9 @@ CarCard.propTypes = {
   priceMax: PropTypes.number,
   image: PropTypes.string,
   carClick: PropTypes.func,
-  carData: PropTypes.objectOf()
+  carData: PropTypes.objectOf(),
+  selectedCar: PropTypes.string,
+  setSelectedCar: PropTypes.func,
+  id: PropTypes.string
 }
 export default CarCard
