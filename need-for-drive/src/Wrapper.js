@@ -1,5 +1,5 @@
 import React from "react"
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
+import { HashRouter as Router, Switch, Route, Redirect } from "react-router-dom"
 import MainPage from "./pages/MainPage/MainPage"
 import OrderPage from "./pages/OrderPage/OrderPage"
 
@@ -11,9 +11,10 @@ function Wrapper() {
           <Route path="/order">
             <OrderPage />
           </Route>
-          <Route path="/">
+          <Route path="/main">
             <MainPage />
           </Route>
+          <Redirect to="/main" />
         </Switch>
       </Router>
     </div>

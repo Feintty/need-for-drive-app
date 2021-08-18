@@ -1,9 +1,4 @@
-const mainHeaders = {
-  headers: {
-    "X-Api-Factory-Application-Id": process.env.REACT_APP_APPLICATION_ID,
-    Authorization: process.env.REACT_APP_AUTHORIZATION
-  }
-}
+import mainHeaders from "../ApiHeaders"
 
 export const fetchCities = (correct, err) => {
   fetch(`${process.env.REACT_APP_API_URL}/api/db/city`, {
@@ -39,7 +34,6 @@ export const fetchPoints = (correct, err) => {
 
 export const fetchCitiesLocation = (correct, err, citiesList) => {
   const cityNames = citiesList.map((el) => `&location=${el.name}`).join("")
-  console.log(cityNames)
   fetch(
     `${process.env.REACT_APP_MAPQUEST_BATCH_URL}${process.env.REACT_APP_MAPQUEST_KEY}${cityNames}`,
     {
@@ -73,7 +67,6 @@ export const fetchPointsLocation = (
       ""
     )
 
-    console.log(pointsAdress)
   fetch(
     `${process.env.REACT_APP_MAPQUEST_BATCH_URL}${process.env.REACT_APP_MAPQUEST_KEY}${pointsAdress}`,
     {

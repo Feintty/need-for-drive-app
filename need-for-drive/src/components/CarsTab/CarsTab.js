@@ -4,9 +4,10 @@ import { fetchCars, fetchCategories } from "./CarsTabApi"
 import CarCard from "../CarCard/CarCard"
 import "./CarsTab.scss"
 
-const CarsTab = ({ carToOrder }) => {
+const CarsTab = ({ returnData, isActive, isCanReset, isCanResetChange }) => {
   const [currentError, setError] = useState()
   const [cars, setCars] = useState()
+  const [selectedCar, setSelectedCar] = useState()
   const [currentFilterName, setCurrentFilterName] = useState("Все модели")
   const [categories, setCategories] = useState()
 
@@ -15,10 +16,17 @@ const CarsTab = ({ carToOrder }) => {
     fetchCategories(setCategories, setError)
   }, [])
 
+  useEffect(() => {
+    if(isCanReset){
+      setSelectedCar()
+      isCanResetChange(false)
+    }
+  }, [isCanReset]);
+
   const filterCars = () => {
     if (currentFilterName === "Все модели") {
       return cars.filter((car) => {
-        if (car.categoryId?.name) {
+        if (car.categoryId?.name && car.colors.length > 0) {
           return car
         }
         return false
@@ -53,6 +61,9 @@ const CarsTab = ({ carToOrder }) => {
   const radioChanged = (e) => {
     setCurrentFilterName(e.target.value)
   }
+  if (!isActive) {
+    return null
+  }
 
   if (!currentError && cars) {
     return (
@@ -65,8 +76,12 @@ const CarsTab = ({ carToOrder }) => {
         <div className="cars-tab__table">
           {filterCars(cars).map((el) => (
             <CarCard
+              id={el.id}
+              key={el.id}
+              setSelectedCar={setSelectedCar}
+              selectedCar={selectedCar}
               carData={el}
-              carClick={carToOrder}
+              carClick={returnData}
               name={el.name}
               priceMin={el.priceMin}
               priceMax={el.priceMax}
@@ -81,7 +96,10 @@ const CarsTab = ({ carToOrder }) => {
 }
 
 CarsTab.propTypes = {
-  carToOrder: PropTypes.func
+  returnData: PropTypes.func,
+  isActive: PropTypes.func,
+  isCanReset: PropTypes.bool,
+isCanResetChange: PropTypes.func
 }
 
 export default CarsTab

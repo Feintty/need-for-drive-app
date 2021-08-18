@@ -6,6 +6,14 @@
   border:1px solid $color-second;
   margin:-0.5px;
   cursor: pointer;
+  transition: 0.1s ease-in-out;
+  
+  &.selected{
+    border:1px solid $color-accent;
+    z-index: 1;
+    color: $color-accent;
+    padding: 13px;
+  }
 
   .car-card__image{
       height: 116px;
@@ -31,11 +39,6 @@
   &:hover{
     border:1px solid $color-accent;
     z-index: 1;
-  }
-  &:focus{
-    border:1px solid $color-accent;
-    z-index: 1;
-    background: rgba(14, 194, 97,0.1);
   }
 }
 

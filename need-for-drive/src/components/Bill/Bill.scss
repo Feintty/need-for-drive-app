@@ -50,6 +50,7 @@
     background-color: white;
     padding-left: 6px;
     max-width: 107px;
+    text-align: right;
   }
 
   .bill__option,
@@ -79,6 +80,10 @@
 
   .bill__button{
     width: 289px;
+  }
+
+  & .error{
+    color:red;
   }
 }
 

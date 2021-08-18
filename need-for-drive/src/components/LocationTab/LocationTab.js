@@ -10,30 +10,34 @@ import {
 import Map from "../Map/Map"
 import TextInput from "../TextInput/TextInput"
 
-const LocationTab = ({ cityAndPointToOrder }) => {
+const LocationTab = ({ returnData, isActive }) => {
   const [citiesList, setCitiesList] = useState()
   const [pointsList, setPointsList] = useState()
   const [currentCity, setCurrentCity] = useState("")
   const [currentPoint, setCurrentPoint] = useState("")
   const [citiesLocation, setCitiesLocation] = useState()
   const [pointsLocation, setPointsLocation] = useState()
-  const [focus, setFocus] = useState([55.751244, 37.618423])
+  const [focus, setFocus] = useState([54.3107593, 48.3642771])
   const [currentError, setError] = useState()
 
   const filterCities = () =>
     citiesList.filter((city) => /^[а-яА-Я]*$/.test(city.name))
 
-  const filterPointsByCityName = (city) =>
-    pointsList.filter((point) => {
+  const filterPointsByCityName = (city) => {
+    const filterReg = new RegExp(/[0-9]|Город/)
+    return pointsList.filter((point) => {
       if (Object.prototype.hasOwnProperty.call(point, "cityId")) {
         if (point.cityId !== null) {
-          if (point.cityId.name === city) {
-            return point
+          if (!filterReg.test(point.cityId.name)) {
+            if (point.cityId.name === city) {
+              return point
+            }
           }
         }
       }
       return false
     })
+  }
   const getLocationByCity = (city) => {
     const location = citiesLocation
       .find((el) => el.providedLocation.location === city)
@@ -42,7 +46,6 @@ const LocationTab = ({ cityAndPointToOrder }) => {
   }
 
   const getLocationByPoint = (point) => {
-    console.log(point)
     const address = `${currentCity},${
       pointsList.find((el) => el.address === point).address
     }`
@@ -53,7 +56,6 @@ const LocationTab = ({ cityAndPointToOrder }) => {
   }
 
   const setCityAndPoint = (city = "", address = "") => {
-    console.log(city, address)
     const findPoint = pointsList.find((el) => el.address === address).address
     setCurrentCity(city)
     setCurrentPoint(findPoint)
@@ -83,7 +85,11 @@ const LocationTab = ({ cityAndPointToOrder }) => {
       setFocus(getLocationByCity(currentCity))
     }
     if (pointsList && currentPoint) {
-      cityAndPointToOrder(currentCity, currentPoint)
+      const cityData = citiesList.find((city) => city.name === currentCity)
+      const pointData = pointsList.find(
+        (point) => point.address === currentPoint
+      )
+      returnData({ city: cityData, point: pointData })
     }
   }, [currentCity, currentPoint])
 
@@ -92,6 +98,10 @@ const LocationTab = ({ cityAndPointToOrder }) => {
       setFocus(getLocationByPoint(currentPoint))
     }
   }, [currentPoint])
+
+  if (!isActive) {
+    return null
+  }
 
   if (
     citiesList &&
@@ -145,7 +155,8 @@ const LocationTab = ({ cityAndPointToOrder }) => {
 }
 
 LocationTab.propTypes = {
-  cityAndPointToOrder: PropTypes.func
+  returnData: PropTypes.func,
+  isActive: PropTypes.bool
 }
 
 export default LocationTab
