@@ -6,14 +6,14 @@ const moment = require("moment")
 
 const OrderCard = ({ carData, additionsData }) => {
   const normalizeCarNumber = (number) => {
-    if (number.length === 9) {
+    if (number && number.length === 9 && number.length > 1) {
       const returnNumber = number.split("")
       returnNumber.splice(1, 0, " ")
       returnNumber.splice(5, 0, " ")
       returnNumber.splice(8, 0, " ")
       return returnNumber.join("")
     }
-    return number
+    return "нет данных"
   }
 
   return (
@@ -25,7 +25,9 @@ const OrderCard = ({ carData, additionsData }) => {
         </div>
         <div className="order-card__tank">
           <b>Топливо</b>{" "}
-          {additionsData.isFullTank ? "100%" : `${carData.tank}%`}
+          {additionsData.isFullTank
+            ? "100%"
+            : `${carData.tank ? `${carData.tank}%` : "нет данных"}`}
         </div>
         <div className="order-card__start">
           <b>Доступна с</b>{" "}
