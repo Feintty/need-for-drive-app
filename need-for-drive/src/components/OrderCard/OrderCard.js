@@ -6,12 +6,15 @@ const moment = require("moment")
 
 const OrderCard = ({ carData, additionsData }) => {
   const normalizeCarNumber = (number) => {
-    if (number && number.length === 9 && number.length > 1) {
+    if (number && number.length === 9) {
       const returnNumber = number.split("")
       returnNumber.splice(1, 0, " ")
       returnNumber.splice(5, 0, " ")
       returnNumber.splice(8, 0, " ")
       return returnNumber.join("")
+    }
+    if (number && number.length > 3) {
+      return number
     }
     return "нет данных"
   }
