@@ -13,8 +13,14 @@ const SummaryTab = ({ isActive }) => {
   const [error, setError] = useState(false)
   const [orderStatus, setOrderStatus] = useState()
   const [orderData, setOrderData] = useState()
-  const { additionsData, carData, locationData, price } =
-    useContext(OrderPageContext)
+  const {
+    additionsData,
+    carData,
+    locationData,
+    price,
+    setIsOrderCompleted,
+    isOrderCompleted
+  } = useContext(OrderPageContext)
 
   useEffect(() => {
     fetchStatus(setOrderStatus, setError)
@@ -53,7 +59,11 @@ const SummaryTab = ({ isActive }) => {
   }
   return (
     <div className="summary-tab">
-      <ModalConfirm onConfirmClick={confirmOrder} />
+      <ModalConfirm
+        onConfirmClick={confirmOrder}
+        isOpened={isOrderCompleted}
+        setIsOpened={setIsOrderCompleted}
+      />
       <OrderCard additionsData={additionsData} carData={carData} />
     </div>
   )

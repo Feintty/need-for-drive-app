@@ -1,21 +1,20 @@
-import React, { useContext } from "react"
+import React from "react"
 import "./ModalConfirm.scss"
 import PropTypes from "prop-types"
-import OrderPageContext from "../../pages/OrderPage/OrderPageContext"
 
-const ModalConfirm = ({ onConfirmClick }) => {
-  const { setIsOrderCompleted, isOrderCompleted } = useContext(OrderPageContext)
-
+const ModalConfirm = ({ onConfirmClick, isOpened, setIsOpened, isCancel }) => {
   const onCancelClick = () => {
-    setIsOrderCompleted(false)
+    setIsOpened(false)
   }
-  if (!isOrderCompleted) {
+  if (!isOpened) {
     return null
   }
   return (
     <div className="modal-confirm">
       <div className="modal-confirm__content">
-        <h3 className="modal-confirm__heading">Потвердить заказ</h3>
+        <h3 className="modal-confirm__heading">
+          {isCancel ? "Отменить заказ" : "Потвердить заказ"}
+        </h3>
         <div className="modal-confirm__buttons">
           <button
             onClick={onConfirmClick}
@@ -36,7 +35,10 @@ const ModalConfirm = ({ onConfirmClick }) => {
 }
 
 ModalConfirm.propTypes = {
-  onConfirmClick: PropTypes.func
+  onConfirmClick: PropTypes.func,
+  isOpened: PropTypes.bool,
+  setIsOpened: PropTypes.func,
+  isCancel: PropTypes.bool
 }
 
 export default ModalConfirm
