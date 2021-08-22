@@ -12,9 +12,9 @@ const Bill = ({
   nextTab,
   additionsData,
   carData,
-  isPriceCorrect
+  isPriceCorrect,
+  setIsOrderCompleted
 }) => {
-  const { color, isFullTank, isBabyChair, isRighthand, tariff } = additionsData
   const createBillElement = (elementName, option, isBool = false) => {
     if (!option) {
       return null
@@ -55,18 +55,21 @@ const Bill = ({
       <div className="bill__pricelist">
         {createBillElement("Пункт выдачи", point)}
         {createBillElement("Модель", carData && carData.name)}
-        {createBillElement("Цвет", color)}
+        {createBillElement("Цвет", additionsData.color)}
         {createBillElement("Длительность аренды:", time)}
-        {createBillElement("Тариф:", tariff && tariff.rateTypeId.name)}
-        {createBillElement("Полный бак:", isFullTank, true)}
-        {createBillElement("Детское кресло:", isBabyChair, true)}
-        {createBillElement("Правый руль:", isRighthand, true)}
+        {createBillElement(
+          "Тариф:",
+          additionsData.tariff && additionsData.tariff.rateTypeId.name
+        )}
+        {createBillElement("Полный бак:", additionsData.isFullTank, true)}
+        {createBillElement("Детское кресло:", additionsData.isBabyChair, true)}
+        {createBillElement("Правый руль:", additionsData.isRighthand, true)}
       </div>
       {createPrice()}
       {isCompleted ? (
         <button
           type="button"
-          onClick={nextTab}
+          onClick={tab === 3 ? () => setIsOrderCompleted(true) : nextTab}
           className={`bill__button ${classes[tab]}`}>
           {content[tab]}
         </button>
@@ -92,7 +95,8 @@ Bill.propTypes = {
   isCompleted: PropTypes.bool,
   nextTab: PropTypes.func,
   isPriceCorrect: PropTypes.bool,
-  time: PropTypes.arrayOf(PropTypes.number)
+  time: PropTypes.arrayOf(PropTypes.number),
+  setIsOrderCompleted: PropTypes.func
 }
 
 export default Bill

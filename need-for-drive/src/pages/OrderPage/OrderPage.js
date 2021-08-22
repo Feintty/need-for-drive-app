@@ -8,18 +8,14 @@ import LocationTab from "../../components/LocationTab/LocationTab"
 import CarsTab from "../../components/CarsTab/CarsTab"
 import AdditionsTab from "../../components/AdditionsTab/AdditionsTab"
 import OrderPageBill from "./OrderPageBill"
+import SummaryTab from "../../components/SummaryTab/SummaryTab"
+import OrderPageContext from "./OrderPageContext"
+import {
+  defaultCompletedLocations,
+  defaultAdditionsData
+} from "./OrderPageDefaultStates"
 
 const OrderPage = () => {
-  const defaultAdditionsData = {
-    color: null,
-    startDate: null,
-    endDate: null,
-    tariff: null,
-    isFullTank: false,
-    isBabyChair: false,
-    isRighthand: false
-  }
-
   const [swapBurger, setSwapBurger] = useState(true)
   const [currentTab, setCurrentTab] = useState(0)
   const [locationData, setLocationData] = useState({ city: null, point: null })
@@ -31,12 +27,10 @@ const OrderPage = () => {
   const [isAdditionsCanReset, setIsAdditionsCanReset] = useState(false)
   const [isCarCanReset, setIsCarCanReset] = useState(false)
   const [isPriceCorrect, setIsPriceCorrect] = useState(false)
-  const [completedLocations, setCompletedLocations] = useState([
-    { isCompleted: false },
-    { isCompleted: false },
-    { isCompleted: false },
-    { isCompleted: false }
-  ])
+  const [completedLocations, setCompletedLocations] = useState(
+    defaultCompletedLocations
+  )
+  const [isOrderCompleted, setIsOrderCompleted] = useState(false)
 
   const resetAdditons = () => {
     setIsAdditionsCanReset(true)
@@ -87,8 +81,10 @@ const OrderPage = () => {
       isPriceCorrect
     ) {
       changeBoolLocation(2, true)
+      changeBoolLocation(3, true)
     } else {
       changeBoolLocation(2, false)
+      changeBoolLocation(3, false)
     }
   }, [carData, locationData, additionsData, price])
 
@@ -104,56 +100,60 @@ const OrderPage = () => {
 
   return (
     <div className="order-page">
-      <SideBar isBurgerHiding={swapBurger} setIsBurgerHiding={setSwapBurger} />
-      <BurgerNav isHiding={swapBurger} />
-      <div className="order-page__content">
-        <Header addClassname="order-page-padding" />
-        <Breadcrumbs
-          completedSteps={
-            completedLocations.filter((el) => el.isCompleted === true).length
-          }
-          currentStep={currentTab}
-          onBreadcrumbClick={changeLocationClick}
+      <OrderPageContext.Provider
+        value={{
+          time,
+          additionsData,
+          setTime,
+          price,
+          isPriceCorrect,
+          setIsPriceCorrect,
+          locationData,
+          carData,
+          currentTab,
+          isCurrentTabCompleted,
+          setPrice,
+          nextTab,
+          isOrderCompleted,
+          setIsOrderCompleted
+        }}>
+        <SideBar
+          isBurgerHiding={swapBurger}
+          setIsBurgerHiding={setSwapBurger}
         />
-        <div className="order-page__tabs">
-          <LocationTab
-            isActive={currentTab === 0}
-            returnData={setLocationData}
-            changeBoolLocation={changeBoolLocation}
+        <BurgerNav isHiding={swapBurger} />
+        <div className="order-page__content">
+          <Header addClassname="order-page-padding" />
+          <Breadcrumbs
+            completedSteps={
+              completedLocations.filter((el) => el.isCompleted === true).length
+            }
+            currentStep={currentTab}
+            onBreadcrumbClick={changeLocationClick}
           />
-          <CarsTab
-            isActive={currentTab === 1}
-            returnData={setCarData}
-            isCanReset={isCarCanReset}
-            isCanResetChange={setIsCarCanReset}
-            changeBoolLocation={changeBoolLocation}
-          />
-          <AdditionsTab
-            isActive={currentTab === 2}
-            carColors={carData && carData.colors}
-            returnData={setAdditionsData}
-            additionsData={additionsData}
-            isCanReset={isAdditionsCanReset}
-            isCanResetChange={setIsAdditionsCanReset}
-            time={time}
-            changeBoolLocation={changeBoolLocation}
-          />
-          <OrderPageBill
-            time={time}
-            additionsData={additionsData}
-            setTime={setTime}
-            price={price}
-            isPriceCorrect={isPriceCorrect}
-            setIsPriceCorrect={setIsPriceCorrect}
-            locationData={locationData}
-            carData={carData}
-            currentTab={currentTab}
-            isCurrentTabCompleted={isCurrentTabCompleted}
-            setPrice={setPrice}
-            nextTab={nextTab}
-          />
+          <div className="order-page__tabs">
+            <LocationTab
+              isActive={currentTab === 0}
+              returnData={setLocationData}
+            />
+            <CarsTab
+              isActive={currentTab === 1}
+              returnData={setCarData}
+              isCanReset={isCarCanReset}
+              isCanResetChange={setIsCarCanReset}
+            />
+            <AdditionsTab
+              isActive={currentTab === 2}
+              carColors={carData && carData.colors}
+              returnData={setAdditionsData}
+              isCanReset={isAdditionsCanReset}
+              isCanResetChange={setIsAdditionsCanReset}
+            />
+            <SummaryTab isActive={currentTab === 3} />
+            <OrderPageBill />
+          </div>
         </div>
-      </div>
+      </OrderPageContext.Provider>
     </div>
   )
 }

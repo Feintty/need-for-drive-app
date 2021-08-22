@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useContext } from "react"
 import PropTypes from "prop-types"
 import fetchTariffs from "./AdditionsTabApi"
 import "./AdditionsTab.scss"
@@ -7,15 +7,16 @@ import DateTimeInterval from "../DateTimeInterval/DateTimeInterval"
 import AdditionsTabTariffRadios from "./AdditionsTabTariffRadios"
 import AdditionsTabColorRadios from "./AdditionsTabColorRadios"
 import AdditionsTabCheckboxes from "./AdditionsTabCheckboxes"
+import OrderPageContext from "../../pages/OrderPage/OrderPageContext"
 
 const AdditionsTab = ({
   isActive,
   carColors,
   returnData,
   isCanReset,
-  isCanResetChange,
-  time
+  isCanResetChange
 }) => {
+  const { time } = useContext(OrderPageContext)
   const [tariffs, setTariffs] = useState()
   const [currentColor, setCurrentColor] = useState(null)
   const [currentTariff, setCurrentTariff] = useState(null)
@@ -137,7 +138,6 @@ AdditionsTab.propTypes = {
   returnData: PropTypes.func,
   isCanReset: PropTypes.bool,
   isCanResetChange: PropTypes.func,
-  time: PropTypes.objectOf()
 }
 
 export default AdditionsTab
