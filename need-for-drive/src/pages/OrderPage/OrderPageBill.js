@@ -1,23 +1,25 @@
-import React, { useEffect } from "react"
-import PropTypes from "prop-types"
+import React, { useEffect, useContext } from "react"
 import Bill from "../../components/Bill/Bill"
+import OrderPageContext from "./OrderPageContext"
 
 const moment = require("moment")
 
-const OrderPageBill = ({
-  time,
-  additionsData,
-  setTime,
-  price,
-  isPriceCorrect,
-  setIsPriceCorrect,
-  locationData,
-  carData,
-  currentTab,
-  isCurrentTabCompleted,
-  setPrice,
-  nextTab
-}) => {
+const OrderPageBill = () => {
+  const {
+    time,
+    additionsData,
+    setTime,
+    price,
+    isPriceCorrect,
+    setIsPriceCorrect,
+    locationData,
+    carData,
+    currentTab,
+    isCurrentTabCompleted,
+    setPrice,
+    nextTab
+  } = useContext(OrderPageContext)
+
   const calculatePrice = () => {
     let calculated
     const timeAsMinutes = time.days * 24 * 60
@@ -86,8 +88,6 @@ const OrderPageBill = ({
     }
   }, [price, additionsData])
 
-  console.log(time)
-
   return (
     <Bill
       point={
@@ -105,21 +105,6 @@ const OrderPageBill = ({
       isPriceCorrect={isPriceCorrect}
     />
   )
-}
-
-OrderPageBill.propTypes = {
-  time: PropTypes.objectOf(),
-  additionsData: PropTypes.objectOf(),
-  setTime: PropTypes.func,
-  price: PropTypes.arrayOf(PropTypes.number),
-  isPriceCorrect: PropTypes.bool,
-  setIsPriceCorrect: PropTypes.func,
-  locationData: PropTypes.objectOf(),
-  carData: PropTypes.objectOf(),
-  currentTab: PropTypes.number,
-  isCurrentTabCompleted: PropTypes.bool,
-  setPrice: PropTypes.func,
-  nextTab: PropTypes.func
 }
 
 export default OrderPageBill

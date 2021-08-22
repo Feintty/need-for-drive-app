@@ -1,7 +1,8 @@
-import React from "react"
+import React, { useContext } from "react"
 import PropTypes from "prop-types"
 import "./Bill.scss"
 import { classes, content } from "./BillButtons"
+import OrderPageContext from "../../pages/OrderPage/OrderPageContext"
 
 const Bill = ({
   point,
@@ -14,6 +15,7 @@ const Bill = ({
   carData,
   isPriceCorrect
 }) => {
+  const { setIsOrderCompleted } = useContext(OrderPageContext)
   const { color, isFullTank, isBabyChair, isRighthand, tariff } = additionsData
   const createBillElement = (elementName, option, isBool = false) => {
     if (!option) {
@@ -66,7 +68,7 @@ const Bill = ({
       {isCompleted ? (
         <button
           type="button"
-          onClick={nextTab}
+          onClick={tab === 3 ? () => setIsOrderCompleted(true) : nextTab}
           className={`bill__button ${classes[tab]}`}>
           {content[tab]}
         </button>

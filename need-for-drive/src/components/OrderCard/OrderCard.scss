@@ -1,0 +1,24 @@
+@import "../../theme/local.scss";
+.order-card {
+    @include flex-row;
+    justify-content: space-between;
+    max-width: 736px;
+  &__car-name {
+    font-size: 18px;
+    line-height: 21px;
+  }
+  &__content * {
+    margin-bottom: 8px;
+  }
+  &__img {
+    height: 116px;
+    object-fit: scale-down;
+  }
+}
+
+@media only screen and (min-width: 0px) and (max-width: 1023px) {
+  .order-card {
+    @include flex-column;
+    justify-content: start;
+  }
+}
